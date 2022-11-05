@@ -1,0 +1,24 @@
+.title {
+    color: blue;
+}
+
+.navbar__header {
+    display: flex;
+    height: 80px;
+    background-color: rgb(141, 219, 202);
+}
+
+.navbar {
+    background-color: burlywood !important;
+}
+
+.background {
+    width: 100%;
+    /* height: 100px; */
+}
+
+.background img {
+    object-fit: cover;
+    width: 100%;
+    height: 400px;
+}

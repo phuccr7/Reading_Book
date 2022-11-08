@@ -2,5 +2,5 @@
 
 ### Developer:
 
-# 20120370 - Triệu Quốc Thái
-# 20120373 - Lê Trương Kinh Thành
+* 20120370 - Triệu Quốc Thái
+* 20120373 - Lê Trương Kinh Thành

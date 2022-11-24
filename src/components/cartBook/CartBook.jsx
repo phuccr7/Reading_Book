@@ -21,16 +21,10 @@ const PostsData = [
         "image": "https://source.unsplash.com/user/erondu/600x400"
     },
     {
-        "category": "Travel",
-        "title": "Nomad Lifestyle",
-        "text": "Learn our tips and tricks on living a nomadic lifestyle",
-        "image": "https://source.unsplash.com/user/_vickyreyes/600x400"
-    },
-    {
-        "category": "Development",
-        "title": "React and the WP-API",
-        "text": "The first ever decoupled starter theme for React & the WP-API",
-        "image": "https://source.unsplash.com/user/ilyapavlov/600x400"
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
     },
     {
         "category": "News",
@@ -39,17 +33,48 @@ const PostsData = [
         "image": "https://source.unsplash.com/user/erondu/600x400"
     },
     {
-        "category": "Travel",
-        "title": "Nomad Lifestyle",
-        "text": "Learn our tips and tricks on living a nomadic lifestyle",
-        "image": "https://source.unsplash.com/user/_vickyreyes/600x400"
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
     },
     {
-        "category": "Development",
-        "title": "React and the WP-API",
-        "text": "The first ever decoupled starter theme for React & the WP-API",
-        "image": "https://source.unsplash.com/user/ilyapavlov/600x400"
-    }
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
+    },
+    {
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
+    },
+    {
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
+    },
+    {
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
+    },
+    {
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
+    },
+    {
+        "category": "News",
+        "title": "CNN Acquire BEME",
+        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+        "image": "https://source.unsplash.com/user/erondu/600x400"
+    },
+
 ]
 
 
@@ -108,7 +133,7 @@ class CardBookHeader extends React.Component {
         };
         return (
             <header style={style} className="CardBook-header">
-                {/* <h4 className="CardBook-header--title">{category}</h4> */}
+                {/* <h5 className="CardBook-header--title">{category}</h5> */}
             </header>
         )
     }
@@ -121,7 +146,7 @@ class CardBookBody extends React.Component {
             <div className="CardBook-body">
                 <p className="date">March 20 2015</p>
 
-                <h2>{this.props.title}</h2>
+                <h5>{this.props.title}</h5>
 
                 <p className="body-content">{this.props.text}</p>
 

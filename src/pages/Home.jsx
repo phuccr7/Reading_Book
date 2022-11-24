@@ -3,6 +3,7 @@ import Header from '../components/header/Header'
 import Content from '../components/content/Content'
 // require('./App.css');
 import DescribeContent from '../components/content/DescribeContent'
+import Footer from '../components/footer/Footer'
 // import GlobalStyle from '../style/GlobalStyle'
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
 
 
       </div>
+      <Footer />
     </div>
   )
 }

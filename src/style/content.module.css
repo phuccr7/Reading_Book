@@ -1,11 +1,18 @@
 .content {
     /* display: flex;
     flex-direction: row; */
+    /* margin-top: 20px; */
+    padding-top: 12px;
+    padding-left: 50px;
     width: 100%;
     height: 100%;
+    border-radius: 40px 0px 0px 40px;
+
+    background-color: #d8d8d8;
 }
 
 .headerContent {
+    margin-top: 50px;
     width: 100%;
     height: 20px;
     align-items: center;
@@ -33,6 +40,16 @@
 .forYou {
     font-size: 20px;
     margin-top: 40px;
+    /* height: 800px;
+    overflow-y: scroll; */
+
+}
+
+.contentForYou {
+    font-size: 20px;
+    margin-top: 40px;
+    height: 400px;
+    overflow-y: scroll;
 
 }
 

@@ -11,6 +11,9 @@ function DescribeContent(props) {
             <div className={Style.container} style={props.style}>
                 <div>
                     About the book
+
+
+                    <h2>{props.id}</h2>
                 </div>
             </div>
         </>

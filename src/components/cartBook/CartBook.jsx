@@ -10,6 +10,9 @@ import "./style.css"
 // export default CartBook
 
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 
 
@@ -18,62 +21,62 @@ const PostsData = [
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
     {
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
     {
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
     {
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
     {
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
     {
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
     {
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
     {
         "category": "News",
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
+        "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
     },
-    {
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
-    },
-    {
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://source.unsplash.com/user/erondu/600x400"
-    },
+    // {
+    //     "category": "News",
+    //     "title": "CNN Acquire BEME",
+    //     "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+    //     "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
+    // },
+    // {
+    //     "category": "News",
+    //     "title": "CNN Acquire BEME",
+    //     "text": "CNN purchased Casey Neistat's Beme app for $25million.",
+    //     "image": "https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
+    // },
 
 ]
 
@@ -126,6 +129,13 @@ class Button extends React.Component {
 
 
 class CardBookHeader extends React.Component {
+    // componentDidMount() {
+    //     // or simply just AOS.init();
+    //     AOS.init({
+    //         // initialise with other settings
+    //         duration: 3000
+    //     });
+    // }
     render() {
         const { image, category } = this.props;
         var style = {
@@ -158,9 +168,16 @@ class CardBookBody extends React.Component {
 
 
 class CardBook extends React.Component {
+    componentDidMount() {
+        // or simply just AOS.init();
+        AOS.init({
+            // initialise with other settings
+            duration: 3000
+        });
+    }
     render() {
         return (
-            <article className="CardBook">
+            <article className="CardBook" data-aos={"flip-left"}>
                 <CardBookHeader category={this.props.details.category} image={this.props.details.image} />
                 <CardBookBody title={this.props.details.title} text={this.props.details.text} />
             </article>

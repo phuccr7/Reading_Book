@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Style from '../../style/content.module.css'
-import CartBook from '../cartBook/CartBook'
+import { Main, StoreContext } from '../cartBook/CartBook'
+import { updateBook } from '../store/action'
+import Context from '../store/Context'
+import { useStore } from '../store/hook'
 
 
 
 function Content(props) {
+
     return (
         <>
+            {/* {props.setBook(7)} */}
             <div style={props.style}>
                 <div className={Style.content}>
                     <div className={Style.headerContent}>
 
                         <div style={{ flex: 1 }}>
 
-                            <span className={Style.title} >Books</span>
+                            <span className={Style.title}  >Books</span>
                             <span className={Style.title}>Audiobooks</span>
                             <span className={Style.title}>Postcasts</span>
                         </div>
@@ -31,7 +36,7 @@ function Content(props) {
                         <div>For You</div>
                         <div className={Style.contentForYou}>
 
-                            <CartBook />
+                            <Main />
                         </div>
 
 

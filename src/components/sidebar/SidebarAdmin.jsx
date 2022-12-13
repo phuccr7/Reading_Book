@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import "./sidebar.css"
-
+import home from "../../assets/imgs/home.png"
+import user from "../../assets/imgs/user.png"
+import book from "../../assets/imgs/openbook.png"
+import admin from "../../assets/imgs/admin.png"
 
 function SidebarAdmin() {
     return (
@@ -12,51 +15,28 @@ function SidebarAdmin() {
                 <section className="app">
                     <aside className="sidebar">
                         <header>
-                            Menu ADMIN
+                            <img className='icon' src={admin} alt="" /> SuperAdmin
                         </header>
+                        <div className='lineRow'></div>
                         <nav className="sidebar-nav">
 
                             <ul>
                                 <li>
-                                    {/* <a href="#"><i className="ion-bag"></i> <span>Quản lý Sách</span></a> */}
-                                    <Link to="dashboard"><i className="ion-bag"></i> <span>DASH BOARD</span></Link>
+                                    {/* <a href="#"><i className="ion-bag"></i> Quản lý Sách</span></a> */}
+                                    <Link to="dashboard"><span>  <img className='icon' src={home} alt="" /> DashBoard </span></Link>
 
                                 </li>
                                 <li>
-                                    {/* <a href="#"><i className="ion-bag"></i> <span>Quản lý Sách</span></a> */}
-                                    <Link to="book"><i className="ion-bag"></i> <span>Quản lý Sách</span></Link>
-                                    <ul className="nav-flyout">
-                                        <li>
-                                            <a href="#"><i className="ion-ios-color-filter-outline"></i>Kho sách</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i className="ion-ios-clock-outline"></i>Thêm sách</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i className="ion-android-star-outline"></i>Cập nhật sách</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i className="ion-heart-broken"></i>Beat</a>
-                                        </li>
-                                    </ul>
+                                    {/* <a href="#"><i className="ion-bag"></i> Quản lý Sách</a> */}
+                                    <Link to="account"><span>  <img className='icon' src={user} alt="" /> Users </span></Link>
+
+
                                 </li>
                                 <li>
-                                    {/* <a href="#"><i className="ion-ios-settings"></i> <span className="">Quản lí tài khoản</span></a> */}
-                                    <Link to="account"><i className="ion-ios-settings"></i> <span className="">Quản lí tài khoản</span></Link>
-                                    <ul className="nav-flyout">
-                                        <li>
-                                            <a href="#"><i className="ion-ios-alarm-outline"></i>Thêm tài khoản</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i className="ion-ios-camera-outline"></i>Xóa Tài khoản</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i className="ion-ios-chatboxes-outline"></i>Cấm tài khoản</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i className="ion-ios-cog-outline"></i>Comment</a>
-                                        </li>
-                                    </ul>
+                                    {/* <a href="#"><i className="ion-ios-settings"></i> <span className="">Quản lí tài khoản</a> */}
+                                    <Link to="book"><span>  <img className='icon' src={book} alt="" /> Books </span></Link>
+
+
                                 </li>
 
                             </ul>

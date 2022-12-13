@@ -20,10 +20,11 @@ const BookDetails = () => {
         // console.log(data);
 
         // if(data){
-          const {description, title, covers} = {description: "description", title: "LOL", covers: "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"};
+          const {description, title, covers, author} = {description: "description description description description description description description description description description description description description description description description description description description description description description description description", title: "Teamfight tactics", covers: "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80", author: "Thanh"};
           const newBook = {
             description: description,
             title: title,
+            author: author,
             cover_img: covers 
           };
           setBook(newBook);
@@ -51,15 +52,17 @@ const BookDetails = () => {
           </div>
           <div className={Style.bookDetailsInfo}>
             <div className={Style.bookDetailsItem}>
-              <span className='fw-6 fs-24'>Tên sách: {book?.title}</span>
+              <span className='fw-6 fs-24' style={{fontWeight:"bold",fontSize:"30px"}}>{book?.title}</span>
             </div>
             <div className={Style.bookDetailsItem}>
-              <span>Nội dung: sdasdddddđsadsađâsdasdsdsdsdsdsdsdsdsdsdsdsdsdsdssssssssssssssssssssssssssssssssssssssssssss{book?.description}</span>
+              <span className='fw-6 fs-24' >Tác giả: {book?.author}</span>
+            </div>
+            <div className={Style.bookDetailsItem}>
+              <span>Nội dung: {book?.description}</span>
             </div>
             
           </div>
         </div>
-        <div>Related Books</div>
       </div>
     </section>
   )

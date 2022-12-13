@@ -12,6 +12,21 @@
     background-color: rgb(214, 245, 246) !important;
 }
 
+.nav-item img {
+    margin-right: 50px;
+}
+
+.bell {
+    width: 20px;
+    height: 20px;
+}
+
+.book {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
 .navbar>.container-fluid a {
     color: #3679e0 !important;
     font-weight: 500;

@@ -1,19 +1,26 @@
 import React from 'react'
 import SidebarAdmin from './SidebarAdmin'
 import "./homeAdmin.css"
+import HeaderAdmin from '../../components/header/HeaderAdmin'
+
 import { Outlet } from 'react-router-dom'
 function HomeAdmin() {
     return (
-        <div className='homeAdmin'>
-            <div className="contentAdmin">
+        <div>
+            <HeaderAdmin />
+            <div className='homeAdmin'>
 
-                <Outlet />
+
+                <div className='sidebarAdmin' >
+
+                    <SidebarAdmin />
+                </div>
+                <div className="contentAdmin">
+
+                    <Outlet />
+                </div>
+
             </div>
-            <div className='sidebarAdmin' >
-
-                <SidebarAdmin />
-            </div>
-
         </div>
     )
 }

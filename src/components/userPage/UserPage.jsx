@@ -1,5 +1,8 @@
-import React from 'react'
 import user from './user.jfif';
+import React, { useState } from 'react'
+import ContentUser from '../content/ContentUser'
+import DescribeContentUser from '../content/DescribeContentUser'
+
 import notification from './notification.png'
 import chat from './chat.png'
 import { Component } from 'react'
@@ -10,6 +13,8 @@ import { SideBarData } from './SideBarData';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
 function UserPage() {
+    const [book, setBook] = useState(10);
+
     return (
         <>
             <div className={style.App}>
@@ -39,6 +44,7 @@ function UserPage() {
                 </div>
                 <div className={style.content}>
                     <div className={style.mainbook}>
+                    <DescribeContentUser style={{ flex: 1 }} book={book} />
 
                     </div>
                     <div className={style.library}>
@@ -47,7 +53,8 @@ function UserPage() {
                             <button type="button"  className={style.viewall}>View all &gt; </button>
 
                         </div>
-                        <div className={style.favbook}>
+                        <ContentUser style={{ flex: 3 }} setBook={setBook} />
+                        {/* <div className={style.favbook}>
                             <div className={style.book}></div>
                             <div className={style.book}></div>
 
@@ -55,7 +62,7 @@ function UserPage() {
 
                             <div className={style.book}></div>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
               

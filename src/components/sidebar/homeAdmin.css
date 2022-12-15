@@ -1,21 +1,31 @@
 .homeAdmin {
     display: flex;
     flex-direction: row;
-    /* flex-direction: column; */
-    justify-content: flex-end;
-    /* width: 50%; */
-    /* max-width: 80%; */
+    /* width: 100vh; */
+    height: 100vh;
+    justify-content: center;
+    /* justify-content: center; */
+    /* justify-content: flex-start; */
+
+}
+
+.homeAdminAll {
+    height: 100vh;
 }
 
 .contentAdmin {
-    flex: 4;
-    font-size: 40px;
-    text-align: center;
+    background-color: rgb(199, 198, 175);
+    flex: 3.5;
+    width: 100%;
+    /* width: 20px; */
+    /* font-size: 40px; */
+    /* text-align: center; */
     /* display: flex; */
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .sidebarAdmin {
     flex: 1;
     height: 100%;
+    margin: 0;
 }

@@ -6,7 +6,7 @@ import HeaderAdmin from '../../components/header/HeaderAdmin'
 import { Outlet } from 'react-router-dom'
 function HomeAdmin() {
     return (
-        <div>
+        <div className='homeAdminAll'>
             <HeaderAdmin />
             <div className='homeAdmin'>
 

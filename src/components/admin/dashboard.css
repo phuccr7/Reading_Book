@@ -30,6 +30,15 @@
 
 }
 
+.cardInfo1 {
+    height: 190px;
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+
+}
+
 .btnSelect{
     display: flex;
 }

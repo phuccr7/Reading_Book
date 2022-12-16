@@ -36,31 +36,31 @@ function Content(props) {
                                   </p>
                                   <div className="contentUserMain">
                                     <div>
-                                    <img src={listAccount.Avatar} alt="" height="170" width="120" style={{marginTop: "5px", marginLeft:"10px",marginRight:"10px"}}/>
+                                    <img src={listAccount.Avatar} alt="" height="250" width="200" style={{marginTop: "5px", marginLeft:"50px",marginRight:"100px"}}/>
                                     </div>
                                     <div>
-                                    <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"15px"}}>
+                                    <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"30px"}}>
                                     <span className=" text-sm font-weight-bolder .text-dark" >
                                       Username: {listAccount.Username} 
                                     </span>
                                     <br />
                                     
                                   </h5>
-                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"15px"}}>
+                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"30px"}}>
                                     <span className=" text-sm font-weight-bolder .text-dark">
                                       Name: {listAccount.Name} 
                                     </span>
                                     <br />
                                     
                                   </h5>
-                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"15px"}} >
+                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"30px"}} >
                                     <span className=" text-sm font-weight-bolder .text-dark">
                                       Email: {listAccount.Email} 
                                     </span>
                                     <br />
                                     
                                   </h5>
-                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"15px"}}>
+                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"30px"}}>
                                     <span className=" text-sm font-weight-bolder .text-dark">
                                       Type of user: {listAccount.TypeOfUser} 
                                     </span>

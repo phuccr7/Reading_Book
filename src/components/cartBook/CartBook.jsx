@@ -49,41 +49,7 @@ const PostsData = [
         "title": "CNN Acquire BEME",
         "text": "CNN purchased Casey Neistat's Beme app for $25million.",
         "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    },
-    {
-        "id": 127,
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    },
-    {
-        "id": 222,
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    },
-    {
-        "id": 1252,
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    },
-
-    // {
-    //     "category": "News",
-    //     "title": "CNN Acquire BEME",
-    //     "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-    //     "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    // },
-    // {
-    //     "category": "News",
-    //     "title": "CNN Acquire BEME",
-    //     "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-    //     "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    // },
+    }
 
 ]
 

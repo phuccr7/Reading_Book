@@ -7,18 +7,18 @@ export const SideBarData = [
     {
         title: "Favorite Books",
         icon: <FavoriteBorderIcon />,
-        link: "/favorite"
+        link: "user/favorite"
     },
 
     {
         title: "My Library",
         icon: <LibraryBooksIcon />,
-        link: "/library"
+        link: "user/library"
     },
     {
         title: "Update Profile",
         icon: <AccountCircleIcon />,
-        link: "/profile"
+        link: "user/update"
     }
 
 

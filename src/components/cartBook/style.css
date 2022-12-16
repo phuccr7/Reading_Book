@@ -93,19 +93,25 @@
 
 .CardBook-header {
     /* width: 200px; */
-    height: 200px;
+    height: 180px;
     padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
 }
 
 .CardBook {
     /* width: 400px; */
     border: 2px solid rgb(34, 197, 48);
-    border-radius: 10px;
-    width: 220px;
+    border-radius: 20px;
+    width: 250px;
     /* height: 400px; */
     /* height: 300px; */
 }
 
+.CardBook img {
+
+}
 /* 
 @media (min-width: 768px) {
     .app-title {
@@ -147,6 +153,9 @@
     background-color: #fff;
     ;
     overflow: hidden;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
 }
 
 .app-card-list {

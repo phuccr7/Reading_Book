@@ -97,8 +97,9 @@ function HomeUser() {
                     < UserPage/>
                 </div>
                 <div className="contentUser">
-                    <Content data={data}/>
                     <Outlet />
+                    { window.location.pathname == "/user" ? <Content data={data} /> : null}
+                    
                 </div>
 
             </div>

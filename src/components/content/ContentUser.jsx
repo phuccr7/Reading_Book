@@ -14,10 +14,6 @@ function Content(props) {
             {/* {props.setBook(7)} */}
             <div style={props.style}>
                 <div className={Style.contentUser}>
-                    
-
-
-        
                         
                         <div className={Style.contentForYou}>
 

@@ -1,4 +1,4 @@
-import user from './user.jpg';
+import user from './user.png';
 import React, { useState } from 'react'
 import ContentUser from '../content/ContentUser'
 import DescribeContentUser from '../content/DescribeContentUser'

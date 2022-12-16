@@ -1,18 +1,24 @@
 import React from 'react'
-import HomeIcon from '@mui/icons-material/Home';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Home from '../../pages/Home';
-import PeopleIcon from '@mui/icons-material/People';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 export const SideBarData = [
     {
-        title: "Home",
-        icon: <HomeIcon />,
-        link: "/home"
+        title: "Favorite Books",
+        icon: <FavoriteBorderIcon />,
+        link: "/favorite"
     },
 
     {
-        title: "Friends",
-        icon: <PeopleIcon />,
-        link: "/friends"
+        title: "My Library",
+        icon: <LibraryBooksIcon />,
+        link: "/library"
+    },
+    {
+        title: "Update Profile",
+        icon: <AccountCircleIcon />,
+        link: "/profile"
     }
 
 

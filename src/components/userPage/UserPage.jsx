@@ -1,4 +1,4 @@
-import user from './user.jfif';
+import user from './user.jpg';
 import React, { useState } from 'react'
 import ContentUser from '../content/ContentUser'
 import DescribeContentUser from '../content/DescribeContentUser'
@@ -42,29 +42,7 @@ function UserPage() {
                     </ul>
                     
                 </div>
-                <div className={style.content}>
-                    <div className={style.mainbook}>
-                    <DescribeContentUser style={{ flex: 1 }} book={book} />
-
-                    </div>
-                    <div className={style.library}>
-                        <div className={style.libraryheader}>
-                            <div className={style.title}>My Library</div>
-                            <button type="button"  className={style.viewall}>View all &gt; </button>
-
-                        </div>
-                        <ContentUser style={{ flex: 3 }} setBook={setBook} />
-                        {/* <div className={style.favbook}>
-                            <div className={style.book}></div>
-                            <div className={style.book}></div>
-
-                            <div className={style.book}></div>
-
-                            <div className={style.book}></div>
-
-                        </div> */}
-                    </div>
-                </div>
+                
               
             </div>
         </>

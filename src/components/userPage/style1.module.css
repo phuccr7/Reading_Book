@@ -8,11 +8,35 @@ body{
     padding: 0;
 }
 
-.Sidebar{
+/* .Sidebar{
     height: 100%;
     width: 250px;
     background-color: #323f52;
     padding-top: 10px;
+} */
+
+.Sidebar {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    /* font-size: 30px; */
+    line-height: 36px;
+
+    /* color: #ecc8c8; */
+
+    position: absolute;
+    /* width: 17em; */
+    width: 300px;
+    height: 100%;
+    top: 100;
+    /* bottom: 0; */
+    background-color: #f5f0f0;
+
+    overflow: hidden;
+    /* background-color: #c7d3dd; */
+    -webkit-transform: translateZ(0);
+    visibility: visible;
+    -webkit-backface-visibility: hidden;
 }
 
 .SidebarList{
@@ -28,7 +52,6 @@ body{
     margin: 0%;
     display: flex;
     flex-direction: row;
-    color: white;
     justify-content: center;
     align-items: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -36,11 +59,12 @@ body{
 }
 .SidebarList .row:hover{
     cursor: pointer;
-    background-color: #2c3745;
+    background-color:  gray;
+
 }
 
 .SidebarList  #active{
-    background-color:  #2c3745;
+    background-color:  gray;
 }
 
 .row #icon{

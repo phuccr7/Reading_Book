@@ -2,12 +2,12 @@ import React from 'react'
 import SidebarAdmin from './SidebarAdmin'
 import "./homeAdmin.css"
 import HeaderAdmin from '../../components/header/HeaderAdmin'
-
+import HeaderUser from '../../components/header/HeaderUser'
 import { Outlet } from 'react-router-dom'
 function HomeAdmin() {
     return (
         <div className='homeAdminAll'>
-            <HeaderAdmin />
+            <HeaderUser />
             <div className='homeAdmin'>
 
 

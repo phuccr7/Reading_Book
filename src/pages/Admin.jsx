@@ -8,23 +8,6 @@ import ManagerAccount from '../components/admin/ManagerAccount'
 import ManagerBook from '../components/admin/ManagerBook'
 function Admin() {
 
-    // let element = useRoutes([
-    //     {
-
-    //         path: "/",
-    //         element: <SidebarAdmin />,
-    //         children: [
-    //             {
-    //                 path: "db",
-    //                 element: < Dashboard />,
-    //             },
-    //             // { path: "tasks", element: <Dashboard /> },
-    //         ],
-    //     },
-    //     // { path: "team", element: <AboutPage /> },
-    // ]);
-
-    // return element;
 
 
     return (
@@ -33,8 +16,8 @@ function Admin() {
 
             <Route path='/' element={<HomeAdmin />}>
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path='account' element={<ManagerAccount />} />
-                <Route path="book" element={<ManagerBook />} />
+                <Route path='account/*' element={<ManagerAccount />} />
+                <Route path='book/*' element={<ManagerBook />} />
             </Route>
 
         </Routes>

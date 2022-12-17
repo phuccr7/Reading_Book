@@ -2,7 +2,7 @@ import user from './user.png';
 import React, { useState } from 'react'
 import ContentUser from '../content/ContentUser'
 import DescribeContentUser from '../content/DescribeContentUser'
-
+import {Link} from 'react-router-dom'
 import notification from './notification.png'
 import chat from './chat.png'
 import { Component } from 'react'
@@ -30,15 +30,17 @@ function UserPage() {
                     <img src={user} alt="" height="80" width="80" className={style.userimg}/>
                     <ul className={style.SidebarList}>
                     {SideBarData.map((val, key)=>{
-                        return <li  
-                                id={window.location.pathname == val.link ? style.active : ""}
+
+                        return <Link to={val.link}>
+                        <li  
                                 className={style.row}
-                                key={key} onClick={()=>{window.location.pathname = val.link}} >
+                                key={key}  >
                                 <div id={style.icon}>{val.icon}</div>{""}
                                 <div id={style.title}>
                                     {val.title}
                                 </div>
                             </li>
+                        </Link>
                         
                     })}
                     <hr style={{width:"100%",textAlign:"left",marginLeft:0,  borderWidth: "2px"

@@ -100,6 +100,14 @@
 
 }
 
+.CardBook-favorite-header {
+    /* width: 200px; */
+    height: 300px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+
 .CardBook {
     /* width: 400px; */
     border: 2px solid rgb(34, 197, 48);
@@ -109,9 +117,7 @@
     /* height: 300px; */
 }
 
-.CardBook img {
 
-}
 /* 
 @media (min-width: 768px) {
     .app-title {

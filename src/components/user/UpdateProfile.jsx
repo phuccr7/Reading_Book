@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import UserPage from '../userPage/UserPage';
 import Replace from '../../assets/imgs/replace.png'
 import style from '../userPage/style1.module.css'
@@ -6,9 +7,45 @@ import DescribeContentUser from '../content/DescribeContentUser'
 import ContentUser from '../content/ContentUser'
 import "../sidebar/homeUser.css"
 import HeaderUser from '../../components/header/HeaderUser'
+import AlertDialogSlide from '../dialog/DialogUser';
 
 import { Outlet } from 'react-router-dom'
 
+function Content() {
+  const [avatar, setAvatar] = useState();
+
+  useEffect(() => {
+    return () => avatar && URL.revokeObjectURL(avatar.preview);
+  }, [avatar]);
+
+  const handlePreviewAvatar = (e) => {
+    const file = e.target.files[0];
+    file.preview = URL.createObjectURL(file);
+
+    setAvatar(file);
+  };
+
+  return (
+    <>
+    {avatar && (
+          <img
+            style={{ marginTop: 8,marginLeft:"10px", height:"290px" ,marginBottom:"10px" }}
+            src={avatar.preview}
+            alt=""
+            width="80%"
+            
+          />
+        )}
+      <div
+        style={{marginLeft:"10px"  }}
+      >
+        <input type="file" onChange={handlePreviewAvatar} />
+
+        
+      </div>
+    </>
+  );
+}
 
 
 function UpdateProfile() {
@@ -21,10 +58,11 @@ function UpdateProfile() {
                                   </p>
                                   <div className="contentUserMain">
                                     <div >
-                                    <img src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" alt='' style={{marginTop: "5px", marginLeft:"50px",marginRight:"60px", height:"250px", width:"200px", backgroundColor:"gray",cursor:"pointer"}}/>
+                                      <Content/>
+                                    {/* <img src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" alt='' style={{marginTop: "5px", marginLeft:"50px",marginRight:"60px", height:"250px", width:"200px", backgroundColor:"gray"}}/> */}
                                     </div>
                                     
-                                    <form action="/user/update" method='post' style={{marginTop:"50px"}}>
+                                    <form action="" method='' style={{marginTop:"50px"}}>
                                     <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"30px"}}>
                                     <span className=" text-sm font-weight-bolder .text-dark">
                                       Name: 
@@ -55,7 +93,7 @@ function UpdateProfile() {
                                     
                                   </h5>
 
-                                  <input type="submit" name="" id="" value="SAVE" style={{marginTop:"60px",width:"70px",height:"40px",fontWeight:"bold",borderRadius:"15px",backgroundColor:"#A9F1D3"}}/>
+                                  <AlertDialogSlide/>
                                     </form>
                                   
                                   </div>

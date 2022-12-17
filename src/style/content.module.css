@@ -37,13 +37,18 @@
 
 }
 
+
+.searchBarAdmin input {
+    width: 40%;
+    /* right: 0px; */
+}
+
 .searchBarAdmin {
     padding: 30px 0 20px 10px;
-    width: 40%;
-    flex: 3;
-    /* padding: 0px 50px; */
-    /* padding-left: 400px; */
-    justify-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* justify-items: flex-start; */
     margin-right: 20px;
 
 }

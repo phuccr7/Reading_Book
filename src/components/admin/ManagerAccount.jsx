@@ -1,13 +1,28 @@
 // import { fontSize } from '@mui/system';
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useState, useEffect } from 'react';
 import "./admin.css"
 import StyleHome from '../../style/content.module.css'
 import ban from "../../assets/imgs/banAC.png";
 import reuse from "../../assets/imgs/reuse.png";
 import del from "../../assets/imgs/delete.png";
+import { Link, Route, Routes, useHref, useNavigate } from 'react-router-dom';
 
 
+import { Dialog } from 'primereact/dialog';
+import AlertDialogSlide from '../dialog/Dialog';
+import { render } from 'react-dom';
+
+
+
+
+import Button from '@mui/material/Button';
+
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 // import HeaderAdmin from '../../components/header/HeaderAdmin'
 const data = [
     {
@@ -41,8 +56,28 @@ const data = [
 function ManagerAccount() {
     return (
         <>
+            <Routes>
+                {/* <Route path='/'> */}
+
+
+                <Route path='all' element={<AllAccount />} />
+                <Route path='reported' element={<BanAccount />} />
+
+                {/* </Route> */}
+            </Routes>
+        </>
+    )
+}
+
+
+
+function AllAccount() {
+    return (
+        <div>
+
             <div className='mainTittle'>
                 {/* <HeaderAdmin /> */}
+
                 <div className='mainTitleMgb'>User Management </div>
                 <Title title={"Admin > User Management"} />
                 <div className='mainContent'>
@@ -50,7 +85,31 @@ function ManagerAccount() {
                     <Content data={data} />
                 </div>
             </div>
-        </>
+
+        </div >
+    )
+}
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+function BanAccount() {
+    return (
+        <div>
+
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Reported Account</div>
+                <Title title={"Admin > User Management > Reported Account "} />
+                <div className='mainContent'>
+
+                    <ContentBan data={data} />
+                </div>
+            </div>
+
+        </div >
     )
 }
 
@@ -65,24 +124,45 @@ function Title(props) {
 
         setTitle(props.title);
     }, [props.title])
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../all', { replace: true }), [navigate]);
     return (
-        <div className={"titleManagerBook"}> {Title} </div >
+        <div className={"titleManagerBook"} onClick={handleOnClick}> {Title} </div >
 
     )
 }
 
 
+
+function BanAccountUser(props) {
+    // alert(user)
+    // <Dialog />
+    // <AlertDialogSlide />
+    // alert("ASd")
+    const [open, setOpen] = React.useState();
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    return (
+        <>
+
+        </>
+    )
+}
+const deleteAccount = (user) => {
+    alert(user)
+}
+const restore = (user) => {
+    alert(user)
+}
 function Content(props) {
     const [listAccount, setList] = useState([]);
-    const banAccount = () => {
-        alert("ban")
-    }
-    const deleteAccount = () => {
-        alert("ban")
-    }
-    const restore = () => {
-        alert("ban")
-    }
+
     useEffect(() => {
 
         setList(props.data)
@@ -90,23 +170,29 @@ function Content(props) {
 
     }, [props.data])
 
+
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
     return (
         <>
             <div>
 
+
                 <div className={StyleHome.searchBarAdmin}>
                     <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" />
+                    <button className='banned' onClick={handleOnClick}>View reported account</button>
 
                 </div>
                 <hr style={{ color: "red" }}></hr>
                 <table class="paleBlueRows">
                     <thead>
                         <tr>
+                            <th>No.</th>
                             <th>Email</th>
                             <th>Username</th>
                             <th>Name</th>
                             <th>Type</th>
-
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -115,52 +201,93 @@ function Content(props) {
                         {/* {listAccount} */}
 
                         {listAccount?.map((item, index) => {
+
                             return (
-                                <tr key={index}>
+                                <tr key={index + 1}>
+                                    <th>{index + 1}</th>
                                     <th>{item.Email}</th>
                                     <td>{item.Username}</td>
                                     <td>{item.Name}</td>
                                     <td>{item.Type}</td>
                                     <td>{item.Status}</td>
-                                    <td>
-                                        <img className='icon' src={ban} alt="" onClick={banAccount} />
-                                        <img className='icon' src={del} alt="" onClick={deleteAccount} />
-                                        <img className='icon' src={reuse} alt="" onClick={restore} />
+
+                                    <td className='optionAdmin'>
+                                        {/* <img className='icon' src={ban} alt="" onClick={() => <BanAccountUser user={item.Username} />} /> */}
+
+                                        <AlertDialogSlide icon={ban} user={item.Username} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={reuse} user={item.Username} type={"reuse"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
                                     </td>
-                                </tr>)
+
+                                </tr>
+                            )
+
+
                         })}
-                        {/* <tr>
-                            <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-                            <td>
-                                <img className='icon' src={chat} alt="" />
-                                <img className='icon' src={ban} alt="" />
-                                <img className='icon' src={del} alt="" />
-                            </td>
-                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </>
+    )
+}
+function ContentBan(props) {
+    const [listAccount, setList] = useState([]);
+
+    useEffect(() => {
+
+        setList(props.data)
+        console.log(listAccount);
+
+    }, [props.data])
+
+
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
+    return (
+        <>
+            <div>
+
+                <div className={StyleHome.searchBarAdmin}>
+
+
+                </div>
+                <hr style={{ color: "red" }}></hr>
+                <table class="paleBlueRows">
+                    <thead>
                         <tr>
-                            <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-                            <td>
-                                <img className='icon' src={chat} alt="" />
-                                <img className='icon' src={ban} alt="" />
-                                <img className='icon' src={del} alt="" />
-                            </td>
+                            <th>No.</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Reported by</th>
+                            <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-                            <td>
-                                <img className='icon' src={chat} alt="" />
-                                <img className='icon' src={ban} alt="" />
-                                <img className='icon' src={del} alt="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-                            <td>
-                                <img className='icon' src={chat} alt="" />
-                                <img className='icon' src={ban} alt="" />
-                                <img className='icon' src={del} alt="" />
-                            </td>
-                        </tr> */}
+                    </thead>
+                    <tbody>
+                        {/* {listAccount} */}
+
+                        {listAccount?.map((item, index) => {
+
+                            return (
+                                <tr key={index + 1}>
+                                    <th>{index + 1}</th>
+                                    <th>{item.Email}</th>
+                                    <td>{item.Username}</td>
+                                    <td>{item.Name}</td>
+
+                                    <td className='optionAdmin'>
+                                        <AlertDialogSlide icon={ban} user={item.Username} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={reuse} user={item.Username} type={"reuse"} />
+                                    </td>
+                                </tr>
+                            )
+
+
+                        })}
+
                     </tbody>
 
                 </table>

@@ -28,13 +28,13 @@ function SidebarAdmin() {
                                 </li>
                                 <li>
                                     {/* <a href="#"><i className="ion-bag"></i> Quản lý Sách</a> */}
-                                    <Link to="account"><span>  <img className='icon' src={user} alt="" /> Users </span></Link>
+                                    <Link to="account/all"><span>  <img className='icon' src={user} alt="" /> Users </span></Link>
 
 
                                 </li>
                                 <li>
                                     {/* <a href="#"><i className="ion-ios-settings"></i> <span className="">Quản lí tài khoản</a> */}
-                                    <Link to="book"><span>  <img className='icon' src={book} alt="" /> Books </span></Link>
+                                    <Link to="book/all"><span>  <img className='icon' src={book} alt="" /> Books </span></Link>
 
 
                                 </li>

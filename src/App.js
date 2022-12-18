@@ -6,7 +6,7 @@ import User from "./pages/User";
 import SidebarAdmin from './components/sidebar/SidebarAdmin';
 import BookDetail from "./pages/BookDetail";
 import Comment from "./components/comment/Comment"
-
+import ReadBook from './components/readBook/readbook';
 import "./style/GlobalStyle.js"
 import { StoreContext } from "./utils/Store";
 function App() {
@@ -17,10 +17,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
 
-        <Route path='/user/*' element={<User/>} />
+        <Route path='/user/*' element={<User />} />
         {/* <Route path='/ad' element={<SidebarAdmin />} /> */}
         <Route path='/admin/*' element={<Admin />} />
-        <Route path='/book' element={ <div><Header/> <BookDetail/><Comment/></div> }/>
+        <Route path='/read' element={<ReadBook />} />
+        <Route path='/book' element={<div><Header /> <BookDetail /><Comment /></div>} />
 
       </Routes>
     </>

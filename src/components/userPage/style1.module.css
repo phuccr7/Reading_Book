@@ -114,9 +114,21 @@ body{
     font-weight: bold;
     color: black;
 }
+.title1{
+    font-size: 48px;
+    font-weight: bold;
+    color:  #F82D11;
+    
+}
 .libraryheader{
     display: flex;
     justify-content: space-between;
+    padding-right: 50px;
+}
+
+.libraryheader1{
+    display: flex;
+    
     padding-right: 50px;
 }
 

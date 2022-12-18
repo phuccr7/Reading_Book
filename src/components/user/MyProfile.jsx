@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import SidebarAdmin from './SidebarAdmin'
+import SidebarAdmin from '../sidebar/SidebarAdmin'
 import UserPage from '../userPage/UserPage';
 
-import "./homeUser.css"
+import "../sidebar/sidebar.css"
 import HeaderUser from '../../components/header/HeaderUser'
 
 import { Outlet } from 'react-router-dom'
@@ -85,25 +85,15 @@ function Content(props) {
     )
 }
 
-function HomeUser() {
+function MyProfile() {
     return (
-        <div className='homeUserAll'>
-            <HeaderUser />
-            <div className='homeUser'>
-
-
-                <div className='sidebarUser' >
-
-                    < UserPage/>
-                </div>
+        
                 <div className="contentUser">
-                    <Outlet />
+                     <Content data={data} /> 
                     
                 </div>
 
-            </div>
-        </div>
     )
 }
 
-export default HomeUser
+export default MyProfile

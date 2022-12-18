@@ -68,6 +68,13 @@
     /* overflow-y: scroll; */
 
 }
+.contentForYou1 {
+    font-size: 20px;
+    margin-top: 40px;
+    height: 400px;
+    /* overflow-y: scroll; */
+    margin-left: 5%
+}
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
 

@@ -15,7 +15,7 @@ function Content(props) {
             <div style={props.style}>
                 <div className={Style.contentUser}>
                         
-                        <div className={Style.contentForYou}>
+                        <div className={Style.contentForYou1}>
 
                             <Main />
                         </div>

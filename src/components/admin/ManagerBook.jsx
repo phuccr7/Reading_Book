@@ -61,6 +61,34 @@ const data = [
         // Action:""
     },
 ]
+
+const dataComment = [
+    {
+        "Username": "messi1987",
+        "Content": "I like this book",
+        "Reply_to": "",
+        
+        // Action:""
+    },
+    {
+        "Username": "ronaldo1985",
+        "Content": "This is helpful website",
+        "Reply_to": "4",
+        // Action:""
+    },
+    {
+        "Username": "neymarjr",
+        "Content": "Excellent!",
+        "Reply_to": "",
+        // Action:""
+    },
+    {
+        "Username": "kylianmpabbe",
+        "Content": "I will share this website to my friend",
+        "Reply_to": "2",
+        // Action:""
+    },
+]
 function ManagerBook() {
     return (
         <>
@@ -70,6 +98,9 @@ function ManagerBook() {
 
                 <Route path='all' element={<AllBook />} />
                 <Route path='add' element={<AddBook />} />
+                <Route path='comment' element={<CommentBook />} />
+
+                <Route path='update' element={<UpdateBook />} />
 
                 {/* </Route> */}
             </Routes>
@@ -98,6 +129,24 @@ function AllBook() {
     )
 }
 
+function CommentBook() {
+    return (
+        <div>
+
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Comment Management </div>
+                <Title title={"Admin > Book Management > Comment Management"} />
+                <div className='mainContent'>
+
+                    <ContentComment data={dataComment} />
+                </div>
+            </div>
+
+        </div >
+    )
+}
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -121,7 +170,24 @@ function AddBook() {
     )
 }
 
+function UpdateBook() {
+    return (
+        <div>
 
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Update Book</div>
+                <Title title={"Admin > Book Management > Update Book "} />
+                <div className='mainContent'>
+
+                    <ContentUpdate data={data} />
+                </div>
+            </div>
+
+        </div >
+    )
+}
 
 
 
@@ -182,6 +248,11 @@ function Content(props) {
 
     const navigate = useNavigate();
     const handleOnClick = useCallback(() => navigate('../add', { replace: true }), [navigate]);
+    
+    const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
+
+    const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
+
     return (
         <>
             <div>
@@ -226,8 +297,8 @@ function Content(props) {
                                     <td className='optionAdmin'>
                                         {/* <img className='icon' src={chat} alt="" onClick={() => <BanAccountUser user={item.Page} />} /> */}
 
-                                        <AlertDialogSlide icon={chat} user={item.Page} type={"chat"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
-                                        <AlertDialogSlide icon={update} user={item.Page} type={"update"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
+                                        <img className='icon' src={chat} alt="" onClick={handleOnClick2} type={"chat"}/>                                      {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
+                                        <img className='icon' src={update} alt="" onClick={handleOnClick1} type={"update"}/>
                                         <AlertDialogSlide icon={del} user={item.Page} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
                                     </td>
 
@@ -244,6 +315,112 @@ function Content(props) {
         </>
     )
 }
+
+function ContentComment(props) {
+    const [listAccount, setList] = useState([]);
+
+    useEffect(() => {
+
+        setList(props.data)
+        console.log(listAccount);
+
+    }, [props.data])
+
+
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../add', { replace: true }), [navigate]);
+    
+    const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
+    return (
+        <>
+            <div>
+
+
+                
+                <hr ></hr>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Content</th>
+                            <th>Reply to</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* {listAccount} */}
+
+                        {listAccount?.map((item, index) => {
+
+                            return (
+                                <tr key={index + 1}>
+                                    <th>{index + 1}</th>
+                                    <th>{item.Username}</th>
+                                    <td>{item.Content}</td>
+                                    <td>{item.Reply_to}</td>
+                                   
+
+                                    <td className='optionAdmin' >
+                                        {/* <img className='icon' src={chat} alt="" onClick={() => <BanAccountUser user={item.Page} />} /> */}
+
+                                
+                                        <AlertDialogSlide icon={del} user={item.Page} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
+                                    </td>
+
+                                </tr>
+                            )
+
+
+                        })}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </>
+    )
+}
+
+function ContentPreview() {
+    const [avatar, setAvatar] = useState();
+  
+    useEffect(() => {
+      return () => avatar && URL.revokeObjectURL(avatar.preview);
+    }, [avatar]);
+  
+    const handlePreviewAvatar = (e) => {
+      const file = e.target.files[0];
+      file.preview = URL.createObjectURL(file);
+  
+      setAvatar(file);
+    };
+  
+    return (
+      <>
+      {avatar && (
+            <img
+              style={{ marginTop: 8,marginLeft:"10px", height:"140px" ,marginBottom:"10px" }}
+              src={avatar.preview}
+              alt=""
+              width="50%"
+              
+            />
+          )}
+        <div
+          style={{marginLeft:"10px"  }}
+        >
+          <input type="file" onChange={handlePreviewAvatar} />
+  
+          
+        </div>
+      </>
+    );
+  }
+
 function ContentBan(props) {
     const [listAccount, setList] = useState([]);
 
@@ -294,16 +471,84 @@ function ContentBan(props) {
                     </div>
 
                     <label>Add cover image
-                        <input type="file" name="img" onChange={changeHandler} />
+                        <br />
+                        <ContentPreview/>
                     </label>
                     <label>Upload content file
-                        <input type="file" name="img" onChange={changeHandler} />
+                    <input type="file" name="img" onChange={changeHandler} />
                     </label>
 
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitBook}>submit</span>
+                    <span id='submitBook' onClick={submitBook}>SUBMIT</span>
+                </div>
+            </div>
+        </>
+    )
+}
+
+function ContentUpdate(props) {
+    const [listAccount, setList] = useState([]);
+
+    useEffect(() => {
+
+        setList(props.data)
+        console.log(listAccount);
+
+    }, [props.data])
+
+    const [selectedFile, setSelectedFile] = useState();
+    const [isFilePicked, setIsFilePicked] = useState(false);
+
+    const changeHandler = (event) => {
+        setSelectedFile(event.target.files[0]);
+        setIsFilePicked(true);
+    };
+
+    const handleSubmission = () => {
+    };
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../update', { replace: true }), [navigate]);
+    return (
+        <>
+            <div>
+                <div className='formBook'>
+                    <div>
+                        <label htmlFor="Name">Name:</label>
+                        <input id="nameBook" placeholder='Name' name='name' />
+                    </div>
+                    <div>
+                        <label htmlFor="Name">Author:</label>
+                        <input id="nameBook" placeholder='Name' name='name' />
+                    </div>
+                    <div>
+                        <label htmlFor="Name">Category:</label>
+                        <input id="nameBook" placeholder='Name' name='name' />
+                    </div>
+                    <div>
+                        <label htmlFor="Name">Number of pages:</label>
+                        <input id="nameBook" placeholder='Name' name='name' />
+                    </div>
+                    <div className="descriptionFormBook">
+                        <label htmlFor="Name">Description:</label>
+
+                        <input type="text" name="descript" />
+                    </div>
+
+                    <label>Change cover image
+                        <br />
+                        <ContentPreview/>
+                    </label>
+                    <label>Update content file
+                    <input type="file" name="img" onChange={changeHandler} />
+                    </label>
+
+
+                </div>
+                <div className='submitFormBook'>
+                    <span id='submitBook' onClick={submitBook}>UPDATE</span>
                 </div>
             </div>
         </>

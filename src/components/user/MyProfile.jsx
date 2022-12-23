@@ -7,6 +7,19 @@ import HeaderUser from '../../components/header/HeaderUser'
 
 import { Outlet } from 'react-router-dom'
 
+// const axios = require('axios');
+
+// const axiosInstance = axios.create({
+//   baseURL: "https://ebook4u-server.onrender.com/user/me",
+//   headers: {
+//     'content-type': 'application/json',
+//     'accept': 'application/json',
+//     'referer': 'survtech-axios-tutorialv1.0',
+//     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs'
+//   },
+//   credentials: true
+// })
+
 const data = {
     Avatar: "https://static01.nyt.com/images/2022/11/22/multimedia/22world-cup-argentina-saudi-arabia-gamer-1-b19a/22world-cup-argentina-saudi-arabia-gamer-1-b19a-superJumbo.jpg?quality=75&auto=webp",
     Username: "messi1987",

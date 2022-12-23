@@ -18,19 +18,10 @@ function FavoriteBook() {
                     <div className={style.library}>
                         <div className={style.libraryheader1}>
                             <img src={Heart} alt="" height={50} width={50} style={{marginRight:"30px",marginTop:"15px"}}/><div className={style.title1}>My favorite books</div>
-                            {/* <button type="button"  className={style.viewall}>View all &gt; </button> */}
 
                         </div>
                         <ContentFavorite style={{ flex: 3 }} setBook={setBook} />
-                        {/* <div className={style.favbook}>
-                            <div className={style.book}></div>
-                            <div className={style.book}></div>
-
-                            <div className={style.book}></div>
-
-                            <div className={style.book}></div>
-
-                        </div> */}
+                        
                     </div>
                 </div>
     )

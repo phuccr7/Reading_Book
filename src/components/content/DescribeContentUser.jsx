@@ -11,7 +11,7 @@ function DescribeContent(props) {
     return (
         <>
             {/* <div style={props.style}> */}
-            <div className={Style.container} style={props.style}>
+            <div className={Style.containerUser} style={props.style}>
                 <div>
                     <div>
 

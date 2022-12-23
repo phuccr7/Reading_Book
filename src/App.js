@@ -12,6 +12,8 @@ import { StoreContext } from "./utils/Store";
 function App() {
   return (
 
+    
+
     <>
       <Routes>
         <Route path='/' element={<Home />} />

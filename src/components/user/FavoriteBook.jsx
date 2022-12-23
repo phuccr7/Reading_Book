@@ -12,6 +12,9 @@ import { Outlet } from 'react-router-dom'
 
 function FavoriteBook() {
     const [book, setBook] = useState(10);
+
+    
+
     return (
         <div className="contentUser" style={{marginLeft:"20px"}}>
                     

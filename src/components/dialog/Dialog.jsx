@@ -28,7 +28,7 @@ export default function AlertDialogSlide(props) {
 
     return (
         <div  >
-            <img className='icon' src={props.icon} alt="" onClick={handleClickOpen} style={{marginLeft:"120%"}}/>
+            <img className='icon' src={props.icon} alt="" onClick={handleClickOpen} />
             <div >
                 <Dialog
                     open={open}

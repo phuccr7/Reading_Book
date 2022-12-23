@@ -47,6 +47,8 @@
 .body-content {
     /* padding-bottom: 40px; */
     font-size: 13px;
+    /* overflow: visible; */
+
     /* line-height: 1.8; */
 }
 
@@ -91,16 +93,30 @@
 
 .CardBook-header {
     /* width: 200px; */
-    height: 300px;
+    height: 180px;
     padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+
+.CardBook-favorite-header {
+    /* width: 200px; */
+    height: 300px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
 }
 
 .CardBook {
     /* width: 400px; */
     border: 2px solid rgb(34, 197, 48);
-    border-radius: 10px;
+    border-radius: 20px;
+    width: 250px;
+    /* height: 400px; */
     /* height: 300px; */
 }
+
 
 /* 
 @media (min-width: 768px) {
@@ -140,16 +156,24 @@
 
 .CardBook-body {
     /* width: 300px; */
+    background-color: #fff;
+    ;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
 }
 
 .app-card-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 10px;
     /* grid-template-columns: 1fr 1fr 1fr; */
     /* width: 100%; */
     /* float: right; */
     margin: 0;
+    /* overflow: scroll; */
     /* min-height: 75vh; */
     /* white-space: normal;
     overflow-x: scroll; */

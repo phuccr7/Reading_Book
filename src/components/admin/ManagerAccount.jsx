@@ -13,7 +13,7 @@ import { Dialog } from 'primereact/dialog';
 import AlertDialogSlide from '../dialog/Dialog';
 import { render } from 'react-dom';
 
-
+import UserService from '../../service/UserService';
 
 
 import Button from '@mui/material/Button';
@@ -23,6 +23,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import axios from 'axios';
+import authHeader from '../../service/authHeader';
 // import HeaderAdmin from '../../components/header/HeaderAdmin'
 const data = [
     {
@@ -160,15 +162,65 @@ const deleteAccount = (user) => {
 const restore = (user) => {
     alert(user)
 }
+const API = 'http://ebook4u-server.onrender.com/api'
+
 function Content(props) {
-    const [listAccount, setList] = useState([]);
+    const [listAccount, setList] = useState(null);
 
     useEffect(() => {
 
-        setList(props.data)
-        console.log(listAccount);
 
-    }, [props.data])
+        // console.log("asd");
+        // const get = async () =>
+
+
+        // axios.get(API + '/user/all', { headers: authHeader() }).
+        // const fetchData = async () => {
+        //     try {
+        //         const { data } = await UserService.getAllAccount();
+        //         console.log(data);
+        //         // then(response => {
+        //         //     console.log(response);
+        //         //     setList(response.data)
+
+        //         // }).catch(err => {
+        //         //     console.log(err);
+        //         // })
+        //     }
+        //     catch (e) {
+
+        //     }
+        // }
+        const fetchData = async () => {
+            try {
+                const { data } = await axios(API + '/user/all', {
+                    headers: {
+                        'content-type': 'application/json',
+                        'accept': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs'
+                    }
+                });
+                // setList(data.data);
+                console.log(data);
+            } catch (error) {
+                console.log(error.response);
+            }
+        }
+        fetchData()
+
+
+        // console.log(get);
+
+
+
+        // const data = UserService.getAllAccount();
+        // .then(res => {
+        //     console.log(res);
+        // })
+        // setList(props.data)
+        // console.log(data);
+
+    }, [])
 
 
 

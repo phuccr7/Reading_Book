@@ -4,6 +4,13 @@ import { useStore } from '../store/hook'
 import HeaderUser from '../header/HeaderUser';
 import "./readbook.css"
 import { getListChapter } from '../../service/GetChapter';
+import left from "../../assets/imgs/left.png"
+import star from "../../assets/imgs/star.png"
+import heart from "../../assets/imgs/love.png"
+import right from "../../assets/imgs/right.png"
+import redirect from "../../assets/imgs/next.png"
+import volume from "../../assets/imgs/volume.png"
+
 const data =
 {
     "id": "2220",
@@ -53,7 +60,7 @@ const ReadBook = () => {
                     <div className="afterMain">
                         <div className="titleAfterMain">Chapter List</div>
                         {chapterData.map((index, count) =>
-                            <span key={count}>{index.name}</span>
+                            <span key={count} className="chapterOfBook">{index.name}</span>
                         )} </div>
                 </div>
             </div>
@@ -70,17 +77,31 @@ function ContentRead(props) {
         let mounted = true;
         // fetch('https://ebook4u-server.onrender.com/api/book/all').then(response => console.log(response))
         getListChapter()
-        // .then(items => {
-        //     console.log(items);
-        //     if (mounted) {
-        //         // setDataChapter(items)
-        //     }
-        // })
-        // return () => mounted = false;
+
     }, [])
     return (
-        <div>
+        <div className='outContent'>
             {/* {dataChapter.data.name} */}
+            <div className='titleRead'>
+
+                <div className="prevTitle">
+                    <img src={left} alt="" />
+
+                </div>
+                <div className="midTittle">
+                    <img src={heart} alt="" />
+                    <img src={star} alt="" />
+                    <img src={redirect} alt="" />
+                    <img src={volume} alt="" />
+                </div>
+                <div className="nextTittle">
+                    <img src={right} alt="" />
+
+                </div>
+            </div>
+            <div className="story">
+                qwd
+            </div>
         </div>
     )
 }

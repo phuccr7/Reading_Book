@@ -67,7 +67,7 @@ const dataComment = [
         "Username": "messi1987",
         "Content": "I like this book",
         "Reply_to": "",
-        
+
         // Action:""
     },
     {
@@ -248,7 +248,7 @@ function Content(props) {
 
     const navigate = useNavigate();
     const handleOnClick = useCallback(() => navigate('../add', { replace: true }), [navigate]);
-    
+
     const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
 
     const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
@@ -295,11 +295,12 @@ function Content(props) {
                                     <td>{item.Create}</td>
 
                                     <td className='optionAdmin'>
-                                        {/* <img className='icon' src={chat} alt="" onClick={() => <BanAccountUser user={item.Page} />} /> */}
 
-                                        <img className='icon' src={chat} alt="" onClick={handleOnClick2} type={"chat"}/>                                      {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
-                                        <img className='icon' src={update} alt="" onClick={handleOnClick1} type={"update"}/>
-                                        <AlertDialogSlide icon={del} user={item.Page} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
+
+                                        <img className='icon' src={chat} alt="" onClick={handleOnClick2} type={"chat"} />
+                                        <img className='icon' src={update} alt="" onClick={handleOnClick1} type={"update"} />
+                                        <AlertDialogSlide icon={del} user={item.Page} type={"delete"} />
+
                                     </td>
 
                                 </tr>
@@ -330,14 +331,14 @@ function ContentComment(props) {
 
     const navigate = useNavigate();
     const handleOnClick = useCallback(() => navigate('../add', { replace: true }), [navigate]);
-    
+
     const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
     return (
         <>
             <div>
 
 
-                
+
                 <hr ></hr>
                 <table class="paleBlueRows">
                     <thead>
@@ -362,12 +363,12 @@ function ContentComment(props) {
                                     <th>{item.Username}</th>
                                     <td>{item.Content}</td>
                                     <td>{item.Reply_to}</td>
-                                   
+
 
                                     <td className='optionAdmin' >
                                         {/* <img className='icon' src={chat} alt="" onClick={() => <BanAccountUser user={item.Page} />} /> */}
 
-                                
+
                                         <AlertDialogSlide icon={del} user={item.Page} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
                                     </td>
 
@@ -387,39 +388,39 @@ function ContentComment(props) {
 
 function ContentPreview() {
     const [avatar, setAvatar] = useState();
-  
+
     useEffect(() => {
-      return () => avatar && URL.revokeObjectURL(avatar.preview);
+        return () => avatar && URL.revokeObjectURL(avatar.preview);
     }, [avatar]);
-  
+
     const handlePreviewAvatar = (e) => {
-      const file = e.target.files[0];
-      file.preview = URL.createObjectURL(file);
-  
-      setAvatar(file);
+        const file = e.target.files[0];
+        file.preview = URL.createObjectURL(file);
+
+        setAvatar(file);
     };
-  
+
     return (
-      <>
-      {avatar && (
-            <img
-              style={{ marginTop: 8,marginLeft:"10px", height:"140px" ,marginBottom:"10px" }}
-              src={avatar.preview}
-              alt=""
-              width="50%"
-              
-            />
-          )}
-        <div
-          style={{marginLeft:"10px"  }}
-        >
-          <input type="file" onChange={handlePreviewAvatar} />
-  
-          
-        </div>
-      </>
+        <>
+            {avatar && (
+                <img
+                    style={{ marginTop: 8, marginLeft: "10px", height: "140px", marginBottom: "10px" }}
+                    src={avatar.preview}
+                    alt=""
+                    width="50%"
+
+                />
+            )}
+            <div
+                style={{ marginLeft: "10px" }}
+            >
+                <input type="file" onChange={handlePreviewAvatar} />
+
+
+            </div>
+        </>
     );
-  }
+}
 
 function ContentBan(props) {
     const [listAccount, setList] = useState([]);
@@ -472,10 +473,10 @@ function ContentBan(props) {
 
                     <label>Add cover image
                         <br />
-                        <ContentPreview/>
+                        <ContentPreview />
                     </label>
                     <label>Upload content file
-                    <input type="file" name="img" onChange={changeHandler} />
+                        <input type="file" name="img" onChange={changeHandler} />
                     </label>
 
 
@@ -539,10 +540,10 @@ function ContentUpdate(props) {
 
                     <label>Change cover image
                         <br />
-                        <ContentPreview/>
+                        <ContentPreview />
                     </label>
                     <label>Update content file
-                    <input type="file" name="img" onChange={changeHandler} />
+                        <input type="file" name="img" onChange={changeHandler} />
                     </label>
 
 

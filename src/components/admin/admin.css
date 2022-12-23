@@ -115,7 +115,7 @@ table.paleBlueRows th {
 .optionAdmin {
     display: flex;
     /* float: left; */
-    width: 100px;
+    /* width: 100px; */
 }
 
 /* tr td:nth-child(1) {

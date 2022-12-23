@@ -162,7 +162,8 @@ const deleteAccount = (user) => {
 const restore = (user) => {
     alert(user)
 }
-const API = 'http://ebook4u-server.onrender.com/api'
+const API = 'https://ebook4u-server.onrender.com/api/user/all'
+// const url = 'https://ebook4u-server.onrender.com/user/me'
 
 function Content(props) {
     const [listAccount, setList] = useState(null);
@@ -170,55 +171,15 @@ function Content(props) {
     useEffect(() => {
 
 
-        // console.log("asd");
-        // const get = async () =>
+        UserService.getAllAccount().
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data)
 
+            }).catch(err => {
+                console.log(err);
+            })
 
-        // axios.get(API + '/user/all', { headers: authHeader() }).
-        // const fetchData = async () => {
-        //     try {
-        //         const { data } = await UserService.getAllAccount();
-        //         console.log(data);
-        //         // then(response => {
-        //         //     console.log(response);
-        //         //     setList(response.data)
-
-        //         // }).catch(err => {
-        //         //     console.log(err);
-        //         // })
-        //     }
-        //     catch (e) {
-
-        //     }
-        // }
-        const fetchData = async () => {
-            try {
-                const { data } = await axios(API + '/user/all', {
-                    headers: {
-                        'content-type': 'application/json',
-                        'accept': 'application/json',
-                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs'
-                    }
-                });
-                // setList(data.data);
-                console.log(data);
-            } catch (error) {
-                console.log(error.response);
-            }
-        }
-        fetchData()
-
-
-        // console.log(get);
-
-
-
-        // const data = UserService.getAllAccount();
-        // .then(res => {
-        //     console.log(res);
-        // })
-        // setList(props.data)
-        // console.log(data);
 
     }, [])
 
@@ -257,11 +218,11 @@ function Content(props) {
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
-                                    <th>{item.Email}</th>
-                                    <td>{item.Username}</td>
-                                    <td>{item.Name}</td>
-                                    <td>{item.Type}</td>
-                                    <td>{item.Status}</td>
+                                    <th>{item.email}</th>
+                                    <td>{item.username}</td>
+                                    <td>{item.fullname}</td>
+                                    <td>{item.role}</td>
+                                    <td>{item.status}</td>
 
                                     <td className='optionAdmin'>
                                         {/* <img className='icon' src={ban} alt="" onClick={() => <BanAccountUser user={item.Username} />} /> */}
@@ -289,11 +250,18 @@ function ContentBan(props) {
 
     useEffect(() => {
 
-        setList(props.data)
-        console.log(listAccount);
 
-    }, [props.data])
+        UserService.getReport().
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data)
 
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+    }, [])
 
 
     const navigate = useNavigate();
@@ -311,8 +279,8 @@ function ContentBan(props) {
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Email</th>
                             <th>Username</th>
+                            <th>Content</th>
                             <th>Reported by</th>
                             <th>Action</th>
                         </tr>
@@ -325,9 +293,9 @@ function ContentBan(props) {
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
-                                    <th>{item.Email}</th>
-                                    <td>{item.Username}</td>
-                                    <td>{item.Name}</td>
+                                    <td>{item.username}</td>
+                                    <th>{item.reason}</th>
+                                    <td>{item.reporter.username}</td>
 
                                     <td className='optionAdmin'>
                                         <AlertDialogSlide icon={ban} user={item.Username} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}

@@ -44,9 +44,10 @@
     justify-content: center;
     justify-items: center;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
     color: #1f2724;
 }
+
+
 
 .formBook input {
     width: 100%;

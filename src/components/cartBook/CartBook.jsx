@@ -1,5 +1,7 @@
 import React from 'react'
 import "./style.css"
+import Close from '../../assets/imgs/close.png'
+import axios from 'axios';
 
 // function CartBook() {
 //     return (
@@ -18,41 +20,15 @@ import { updateBook } from '../store/action';
 import { useStore } from '../store/hook';
 // export const StoreContext = React.createContext(null);
 
+const url = 'https://ebook4u-server.onrender.com/api/book/all'
 
 
 
-const PostsData = [
-    {
-        "id": 112,
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    },
-    {
-        "id": 122,
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    },
-    {
-        "id": 172,
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    },
-    {
-        "id": 192,
-        "category": "News",
-        "title": "CNN Acquire BEME",
-        "text": "CNN purchased Casey Neistat's Beme app for $25million.",
-        "image": "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-    }
 
-]
 
+const deleteFavorite = () => {
+    alert("delete");
+}
 
 // Start App
 class Main extends React.Component {
@@ -63,11 +39,28 @@ class Main extends React.Component {
             posts: {}
         }
     }
-    componentWillMount() {
+
+    fetchData = async () => {
+        try {
+          const {data} = await axios(url, {
+            headers:{
+              'content-type': 'application/json',
+              'accept': 'application/json',
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs'
+            }
+          });
+          
+          console.log(data);
         this.setState({
-            posts: PostsData
+            posts: data.data
         });
-    }
+        } catch (error) {
+          console.log(error.response);
+        }
+      }
+        componentDidMount(){
+            this.fetchData()
+        }
 
 
     render() {
@@ -110,12 +103,11 @@ class CardBookHeader extends React.Component {
     // }
     render() {
         const { image, category } = this.props;
-        var style = {
-            backgroundImage: 'url(' + image + ')',
-        };
+        
         return (
-            <header style={style} className="CardBook-header">
+            <header  className="CardBook-favorite-header">
                 {/* <h5 className="CardBook-header--title">{category}</h5> */}
+                <img src={image} alt="" height={300} width={246} style={{borderTopLeftRadius: "20px",borderTopRightRadius: "20px"}}/>
             </header>
         )
     }
@@ -133,6 +125,9 @@ class CardBookBody extends React.Component {
                 <p className="body-content">{this.props.text}</p>
 
                 <Button />
+                
+                
+
             </div>
         )
     }
@@ -145,7 +140,7 @@ const MyContext = React.createContext();
 // data-aos={"flip-left"}
 function CardBook(props) {
     const [state, update] = useStore()
-    const id = props.details.id
+    const id = props.details._id
     // const { id, setID } = state
     // const [state, update] = useContext(Context)
     // console.log(state);
@@ -159,7 +154,7 @@ function CardBook(props) {
 
                 <article className="CardBook" onClick={change}  >
                     <CardBookHeader category={props.details.category} image={props.details.image} />
-                    <CardBookBody title={props.details.title} text={props.details.text} />
+                    <CardBookBody title={props.details.title} text={props.details.description} />
                 </article >
             </>
         </div>

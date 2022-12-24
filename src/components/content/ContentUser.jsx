@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Style from '../../style/content.module.css'
-import { Main, StoreContext } from '../cartBook/CartBook'
+import { Main, StoreContext } from '../cartBook/CartLibrary'
 import { updateBook } from '../store/action'
 import Context from '../store/Context'
 import { useStore } from '../store/hook'

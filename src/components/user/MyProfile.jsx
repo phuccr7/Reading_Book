@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SidebarAdmin from '../sidebar/SidebarAdmin'
 import UserPage from '../userPage/UserPage';
 import moment from 'moment';
+import UserService from '../../service/UserService';
 
 import "../sidebar/sidebar.css"
 import HeaderUser from '../../components/header/HeaderUser'
@@ -37,30 +38,21 @@ const url = 'https://ebook4u-server.onrender.com/user/me'
 function Content(props) {
     const [listAccount, setList] = useState([]);
    
-    const fetchData = async () => {
-      try {
-        const {data} = await axios(url, {
-          headers:{
-            'content-type': 'application/json',
-            'accept': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs'
-          }
-        });
-        setList(data.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    }
+    
+    useEffect(() => {
 
-    fetchData();
-    // useEffect(() => {
 
-    //     // setList(props.data)
-    //     // console.log(props.data);
-    //     // console.log(1);
-    //     // console.log(listAccount);
+      UserService.getAllAccount().
+          then(response => {
+              console.log(response.data.data);
+              setList(response.data.data[0])
 
-    // }, [props.data])
+          }).catch(err => {
+              console.log(err);
+          })
+
+
+  }, [])
 
     return (
         <>
@@ -105,7 +97,7 @@ function Content(props) {
                                   </h5>
                                   <h5 className="font-weight-bolder mb-0"  style={{paddingBottom:"15px"}}>
                                     <span className=" text-sm font-weight-bolder .text-dark">
-                                      Date of birth: {moment.utc(listAccount.dateOfBirth).format('MM/DD/YYYY')
+                                      Date of birth: {moment.utc(listAccount.dateOfBirth).format('DD/MM/YYYY')
 } 
                                     </span>
                                     <br />

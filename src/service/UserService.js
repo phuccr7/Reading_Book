@@ -15,6 +15,14 @@ class UserService {
 
     }
 
+    getProfileUser(){
+        return axios.get(API + 'user/me', { headers: authHeader() })
+    }
+
+    getFavBook(){
+        return axios.get(API + 'user/me/favorite-book', { headers: authHeader() })
+    }
+    
 }
 
 export default new UserService();

@@ -157,7 +157,7 @@ function CardBook(props) {
         <div>
             <>
 
-                <article article className="CardBook" onClick={change}  >
+                <article className="CardBook" onClick={change}  >
                     <CardBookHeader category={props.details.category} image={props.details.image} />
                     <CardBookBody title={props.details.title} text={props.details.text} />
                 </article >

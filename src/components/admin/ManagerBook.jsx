@@ -22,6 +22,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import bookService from '../../service/bookService';
 
 
 
@@ -239,10 +240,18 @@ function Content(props) {
 
     useEffect(() => {
 
-        setList(props.data)
-        console.log(listAccount);
 
-    }, [props.data])
+        bookService.getAllBook().
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+    }, [])
 
 
 
@@ -269,10 +278,9 @@ function Content(props) {
                         <tr>
 
                             <th>ID</th>
+                            <th>Name</th>
                             <th>Author</th>
-                            <th>Author</th>
-                            <th>Pages</th>
-                            <th>Views</th>
+                            <th>Number of Chapter</th>
                             <th>Category</th>
                             <th>Create at</th>
                             <th>Action</th>
@@ -283,16 +291,17 @@ function Content(props) {
                         {/* {listAccount} */}
 
                         {listAccount?.map((item, index) => {
-
+                            let text = item.category.map(a => (a.name));
+                            text = text.toString()
+                            text = text.substring(0, text.length - 1);
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
-                                    <th>{item.Name}</th>
-                                    <td>{item.Author}</td>
-                                    <td>{item.Page}</td>
-                                    <td>{item.Views}</td>
-                                    <td>{item.Type}</td>
-                                    <td>{item.Create}</td>
+                                    <th>{item.name}</th>
+                                    <td>{item.author}</td>
+                                    <td>{item.numberChapter}</td>
+                                    <td>{text}</td>
+                                    <td>{item.createdAt}</td>
 
                                     <td className='optionAdmin'>
 

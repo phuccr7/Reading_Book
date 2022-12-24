@@ -114,11 +114,11 @@ class CardBookHeader extends React.Component {
     // }
     render() {
         const { image, category } = this.props;
-        
+
         return (
-            <header  className="CardBook-favorite-header">
+            <header className="CardBook-favorite-header">
                 {/* <h5 className="CardBook-header--title">{category}</h5> */}
-                <img src={image} alt="" height={300} width={246} style={{borderTopLeftRadius: "20px",borderTopRightRadius: "20px"}}/>
+                <img src={image} alt="" height={300} width={246} style={{ borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }} />
             </header>
         )
     }
@@ -137,10 +137,10 @@ class CardBookBody extends React.Component {
 
                 <Button />
                 <br />
-                <div style={{display: "block",marginLeft: "auto",marginRight: "auto", width: "20%"}}>
-                    <img src={Close} alt="" height={40} width={40} onClick={deleteFavorite} style={{cursor:"pointer"}}/>
+                <div style={{ display: "block", marginLeft: "auto", marginRight: "auto", width: "20%" }}>
+                    <img src={Close} alt="" height={40} width={40} onClick={deleteFavorite} style={{ cursor: "pointer" }} />
                 </div>
-                
+
 
             </div>
         )
@@ -166,7 +166,7 @@ function CardBook(props) {
         <div>
             <>
 
-                <article article className="CardBook" onClick={change}  >
+                <article className="CardBook" onClick={change}  >
                     <CardBookHeader category={props.details.category} image={props.details.image} />
                     <CardBookBody title={props.details.title} text={props.details.text} />
                 </article >

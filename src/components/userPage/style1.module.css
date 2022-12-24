@@ -174,13 +174,11 @@ body{
 }
 .bookDetailsImg{
     max-height: 600px;
-    overflow: hidden;
     width: 600px;
     height: 700px;
 }
 .bookDetailsImg img{
     margin: 0 auto;
-    width: 100%;
     height: 100%;
     object-fit: cover;
 }

@@ -47,10 +47,7 @@ function header() {
                     </div>
                 </nav>
 
-                <div className={"background"}>
-                    <img src="https://storyshares.blob.core.windows.net/media/staff_pick/biddyweb.jpg" alt="book" />
-                </div>
-
+                
 
             </div>
         </>

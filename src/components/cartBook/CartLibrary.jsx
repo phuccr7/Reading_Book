@@ -2,7 +2,7 @@ import React from 'react'
 import "./style.css"
 import Close from '../../assets/imgs/close.png'
 import axios from 'axios';
-
+import UserService from '../../service/UserService';
 // function CartBook() {
 //     return (
 //         <div>CartBook</div>
@@ -41,23 +41,18 @@ class Main extends React.Component {
     }
 
     fetchData = async () => {
-        try {
-          const {data} = await axios(url, {
-            headers:{
-              'content-type': 'application/json',
-              'accept': 'application/json',
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs'
-            }
-          });
-          
-          console.log(data);
-        this.setState({
-            posts: data.data
-        });
-        } catch (error) {
-          console.log(error.response);
-        }
-      }
+        UserService.getLibrary().
+          then(response => {
+              console.log(response.data.data);
+              this.setState({
+                posts: response.data.data
+            });
+
+          }).catch(err => {
+              console.log(err);
+          })
+        
+    }
         componentDidMount(){
             this.fetchData()
         }

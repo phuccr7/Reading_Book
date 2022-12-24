@@ -22,7 +22,7 @@ function UserPage() {
             <div className={style.App}>
                 
                 <div className={style.Sidebar}>
-                    <div className={style.above-user}>
+                    <div>
                         <img src={notification} alt="" height={20} width={20} className={style.notification}/>
                         <img src={chat} alt="" height={20} width={20} className={style.chat}/>
 
@@ -34,7 +34,7 @@ function UserPage() {
                         return <Link to={val.link}>
                         <li  
                                 className={style.row}
-                                key={key}  >
+                                key={`keyTop${key}`}  >
                                 <div id={style.icon}>{val.icon}</div>{""}
                                 <div id={style.title}>
                                     {val.title}
@@ -49,7 +49,7 @@ function UserPage() {
                         return <li  
                                 id={window.location.pathname == val.link ? style.active : ""}
                                 className={style.row}
-                                key={key} onClick={()=>{window.location.pathname = val.link}} >
+                                key={`keyOption${key}`} onClick={()=>{window.location.pathname = val.link}} >
                                 <div id={style.icon}>{val.icon}</div>{""}
                                 <div id={style.title}>
                                     {val.title}

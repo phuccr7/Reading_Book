@@ -20,7 +20,7 @@ import { updateBook } from '../store/action';
 import { useStore } from '../store/hook';
 // export const StoreContext = React.createContext(null);
 
-const url = 'https://ebook4u-server.onrender.com/user/me/favorite-book'
+const url = 'https://ebook4u-server.onrender.com/user/me/history'
 
 
 
@@ -125,10 +125,7 @@ class CardBookBody extends React.Component {
                 <p className="body-content">{this.props.text}</p>
 
                 <Button />
-                <br />
-                <div style={{display: "block",marginLeft: "auto",marginRight: "auto", width: "20%", marginBottom:10}}>
-                    <img src={Close} alt="" height={40} width={40} onClick={deleteFavorite} style={{cursor:"pointer"}}/>
-                </div>
+                
                 
 
             </div>

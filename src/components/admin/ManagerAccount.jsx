@@ -6,7 +6,7 @@ import StyleHome from '../../style/content.module.css'
 import ban from "../../assets/imgs/banAC.png";
 import reuse from "../../assets/imgs/reuse.png";
 import del from "../../assets/imgs/delete.png";
-import { Link, Route, Routes, useHref, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, useHref, useNavigate } from 'react-router-dom';
 
 
 import { Dialog } from 'primereact/dialog';
@@ -61,6 +61,7 @@ function ManagerAccount() {
             <Routes>
                 {/* <Route path='/'> */}
 
+                <Route index element={<Navigate to="all" replace />} />
 
                 <Route path='all' element={<AllAccount />} />
                 <Route path='reported' element={<BanAccount />} />
@@ -227,9 +228,9 @@ function Content(props) {
                                     <td className='optionAdmin'>
                                         {/* <img className='icon' src={ban} alt="" onClick={() => <BanAccountUser user={item.Username} />} /> */}
 
-                                        <AlertDialogSlide icon={ban} user={item.Username} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        <AlertDialogSlide icon={reuse} user={item.Username} type={"reuse"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={ban} user={item._id} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        {/* <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={reuse} user={item._id} type={"reuse"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
                                     </td>
 
                                 </tr>
@@ -293,14 +294,14 @@ function ContentBan(props) {
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
-                                    <td>{item.username}</td>
+                                    <td>{item.object.username}</td>
                                     <th>{item.reason}</th>
                                     <td>{item.reporter.username}</td>
 
                                     <td className='optionAdmin'>
-                                        <AlertDialogSlide icon={ban} user={item.Username} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        <AlertDialogSlide icon={reuse} user={item.Username} type={"reuse"} />
+                                        <AlertDialogSlide icon={ban} user={item.object._id} type={"ban this user"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        {/* <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        {/* <AlertDialogSlide icon={reuse} user={item.Username} type={"reuse"} /> */}
                                     </td>
                                 </tr>
                             )

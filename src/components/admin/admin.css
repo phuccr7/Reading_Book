@@ -47,7 +47,35 @@
     color: #1f2724;
 }
 
+.react-select__control {
+    border-radius: 10px;
+}
 
+/* #react-select-3-listbox { */
+.react-select__menu-list {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.react-select__value-container {
+
+    height: 50px;
+    overflow: scroll;
+
+}
+
+/* .react-select__menu {
+    overflow-y: scroll;
+
+}    */
+
+
+
+.selectOption {
+    height: 80px;
+}
 
 .formBook input {
     width: 100%;

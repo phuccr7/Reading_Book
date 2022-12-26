@@ -8,12 +8,64 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 
 import "./dialog.css"
+import UserService from '../../service/UserService';
+import { useNavigate } from 'react-router-dom';
+import bookService from '../../service/bookService';
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const agree = (type, icon) => {
-    alert(type);
+
+const agree = (type, user) => {
+    // alert(type);
+    // alert(user)
+
+    switch (type) {
+        case "ban":
+            UserService.banAccount(user)
+                .then((result) => {
+                    window.location.reload(false)
+
+                })
+                .catch((error) => {
+
+                });
+
+            break;
+        case "ban this user":
+            UserService.banAccount(user)
+                .then((result) => {
+                    window.location.href = "http://localhost:3000/admin/account/all"
+
+                })
+                .catch((error) => {
+
+                });
+
+            break;
+        case "reuse":
+            UserService.unbanAccount(user)
+                .then((result) => {
+                    window.location.reload(false)
+
+                })
+                .catch((error) => {
+
+                });
+            break;
+        case "delete":
+            bookService.deleteBook(user)
+                .then((result) => {
+                    window.location.reload(false)
+
+                })
+                .catch((error) => {
+
+                });
+            break;
+        default:
+            break;
+    }
 }
 export default function AlertDialogSlide(props) {
     const [open, setOpen] = React.useState(false);

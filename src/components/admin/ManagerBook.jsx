@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import "./admin.css"
 import StyleHome from '../../style/content.module.css'
 import chat from "../../assets/imgs/chat.png";
-import update from "../../assets/imgs/update.png";
+import updateIcon from "../../assets/imgs/update.png";
 import del from "../../assets/imgs/delete.png";
-import { Link, Route, Routes, useHref, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, useHref, useNavigate } from 'react-router-dom';
 
 
 import { Dialog } from 'primereact/dialog';
@@ -14,6 +14,8 @@ import { render } from 'react-dom';
 
 
 import $ from "jquery"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 import Button from '@mui/material/Button';
 
@@ -23,9 +25,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import bookService from '../../service/bookService';
+import Select from 'react-select'
 
-
-
+import makeAnimated from 'react-select/animated';
+import { Category } from '@mui/icons-material';
+import { useStore } from '../store/hook';
+import { updateBook } from '../store/action';
 
 
 
@@ -96,7 +101,7 @@ function ManagerBook() {
             <Routes>
                 {/* <Route path='/'> */}
 
-
+                <Route index element={<Navigate to="all" replace />} />
                 <Route path='all' element={<AllBook />} />
                 <Route path='add' element={<AddBook />} />
                 <Route path='comment' element={<CommentBook />} />
@@ -237,13 +242,14 @@ const restore = (user) => {
 }
 function Content(props) {
     const [listAccount, setList] = useState([]);
+    const [state, update] = useStore()
 
     useEffect(() => {
 
 
         bookService.getAllBook().
             then(response => {
-                console.log(response.data.data);
+                // console.log(response.data.data);
                 setList(response.data.data)
 
             }).catch(err => {
@@ -307,8 +313,15 @@ function Content(props) {
 
 
                                         <img className='icon' src={chat} alt="" onClick={handleOnClick2} type={"chat"} />
-                                        <img className='icon' src={update} alt="" onClick={handleOnClick1} type={"update"} />
-                                        <AlertDialogSlide icon={del} user={item.Page} type={"delete"} />
+                                        <img className='icon' src={updateIcon} alt=""
+                                            onClick={() => {
+                                                // alert(item._id)
+                                                localStorage.setItem("bookUpdate", item._id);
+                                                update(updateBook(item._id))
+                                                handleOnClick1()
+                                            }
+                                            } type={"update"} />
+                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} />
 
                                     </td>
 
@@ -332,7 +345,7 @@ function ContentComment(props) {
     useEffect(() => {
 
         setList(props.data)
-        console.log(listAccount);
+        // console.log(listAccount);
 
     }, [props.data])
 
@@ -423,7 +436,7 @@ function ContentPreview() {
             <div
                 style={{ marginLeft: "10px" }}
             >
-                <input type="file" onChange={handlePreviewAvatar} />
+                <input type="file" onChange={handlePreviewAvatar} id="contentPDF" />
 
 
             </div>
@@ -431,15 +444,49 @@ function ContentPreview() {
     );
 }
 
-function ContentBan(props) {
-    const [listAccount, setList] = useState([]);
+let CategoryListFromSV = []
 
+function ContentBan(props) {
+
+    const [listCountry, setCountry] = useState([]);
+    const [options, setOption] = useState([]);
+
+    // const options = [
+
+    // ]
     useEffect(() => {
 
-        setList(props.data)
-        console.log(listAccount);
 
-    }, [props.data])
+        const load = async () => {
+            const result = await bookService.getAllCategory();
+
+            // console.log(result);
+
+
+            let list = [];
+            result.data.data.map((item) => {
+                list.push({ value: item._id, label: item.name });
+            });
+
+            setOption(list);
+            CategoryListFromSV = list
+
+        };
+
+        load()
+
+        bookService.getAllCountry().
+            then(response => {
+
+                setCountry(response.data.data);
+
+            }).catch(err => {
+                console.log(err);
+            });
+
+
+    }, [])
+
 
     const [selectedFile, setSelectedFile] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
@@ -451,6 +498,7 @@ function ContentBan(props) {
 
     const handleSubmission = () => {
     };
+    const animatedComponents = makeAnimated();
 
     const navigate = useNavigate();
     const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
@@ -463,30 +511,54 @@ function ContentBan(props) {
                         <input id="nameBook" placeholder='Name' name='name' />
                     </div>
                     <div>
-                        <label htmlFor="Name">Author:</label>
-                        <input id="nameBook" placeholder='Name' name='name' />
+                        <label htmlFor="author">Author:</label>
+                        <input id="author" placeholder='Name' name='name' />
                     </div>
                     <div>
-                        <label htmlFor="Name">Category:</label>
-                        <input id="nameBook" placeholder='Name' name='name' />
+
+                        <label htmlFor="category">Category:</label>
+                        <Select closeMenuOnSelect={false}
+
+                            components={animatedComponents}
+                            className="react-select-container"
+                            classNamePrefix="react-select"
+                            options={options} isMulti
+                            maxMenuHeight={250}
+
+                            menuPlacement="auto"
+                            id="category"
+
+                        />
+
+
                     </div>
                     <div>
-                        <label htmlFor="Name">Number of pages:</label>
-                        <input id="nameBook" placeholder='Name' name='name' />
+                        <label htmlFor="country">Country:</label>
+                        <select name="country" id="country">
+                            {
+                                listCountry.map((item, index) => {
+                                    return (
+
+                                        <option key={index} value={item._id}>{item.name}</option>
+                                    )
+
+                                })
+                            }
+
+                        </select>
+
                     </div>
                     <div className="descriptionFormBook">
-                        <label htmlFor="Name">Description:</label>
+                        <label htmlFor="descriptionFormBook">Description:</label>
 
-                        <input type="text" name="descript" />
+                        <input id='descriptionFormBook' type="text" name="descriptionFormBook" />
                     </div>
 
                     <label>Add cover image
                         <br />
                         <ContentPreview />
                     </label>
-                    <label>Upload content file
-                        <input type="file" name="img" onChange={changeHandler} />
-                    </label>
+
 
 
                 </div>
@@ -497,16 +569,55 @@ function ContentBan(props) {
         </>
     )
 }
+async function initData(id) {
 
+    const response = await bookService.getBookById(id);
+    let data = response.data.data.book;
+    if (!data) return
+    console.log(data);
+    $('#nameBook2').val(data.name)
+    $('#author2').val(data.author)
+    $('#country2').val(data.country);
+
+    $('#descriptionFormBook2').val(data.description);
+}
 function ContentUpdate(props) {
-    const [listAccount, setList] = useState([]);
-
+    const [listCountry, setCountry] = useState([]);
+    const [options, setOption] = useState([]);
+    const [state, update] = useStore()
+    const id = localStorage.getItem("bookUpdate");
+    // const id = state.id
     useEffect(() => {
+        initData(id)
+        // console.log(state);
 
-        setList(props.data)
-        console.log(listAccount);
+        const load = async () => {
+            const result = await bookService.getAllCategory();
 
-    }, [props.data])
+            let list = [];
+            result.data.data.map((item) => {
+                list.push({ value: item._id, label: item.name });
+            });
+
+            setOption(list);
+            CategoryListFromSV = list
+
+        };
+
+        load()
+
+        bookService.getAllCountry().
+            then(response => {
+
+                setCountry(response.data.data);
+
+            }).catch(err => {
+                console.log(err);
+            });
+
+
+    }, [])
+
 
     const [selectedFile, setSelectedFile] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
@@ -518,56 +629,192 @@ function ContentUpdate(props) {
 
     const handleSubmission = () => {
     };
+    const animatedComponents = makeAnimated();
 
     const navigate = useNavigate();
-    const handleOnClick = useCallback(() => navigate('../update', { replace: true }), [navigate]);
+    const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
     return (
         <>
             <div>
                 <div className='formBook'>
                     <div>
-                        <label htmlFor="Name">Name:</label>
-                        <input id="nameBook" placeholder='Name' name='name' />
+                        <label htmlFor="Name2">Name:</label>
+                        <input id="nameBook2" placeholder='Name' name='name' />
                     </div>
                     <div>
-                        <label htmlFor="Name">Author:</label>
-                        <input id="nameBook" placeholder='Name' name='name' />
+                        <label htmlFor="author2">Author:</label>
+                        <input id="author2" placeholder='Name' name='name' />
                     </div>
                     <div>
-                        <label htmlFor="Name">Category:</label>
-                        <input id="nameBook" placeholder='Name' name='name' />
+
+                        <label htmlFor="category2">Category:</label>
+                        <Select closeMenuOnSelect={false}
+
+                            components={animatedComponents}
+                            className="react-select-container"
+                            classNamePrefix="react-select"
+                            options={options} isMulti
+                            maxMenuHeight={250}
+
+                            menuPlacement="auto"
+                            id="category2"
+
+                        />
+
                     </div>
                     <div>
-                        <label htmlFor="Name">Number of pages:</label>
-                        <input id="nameBook" placeholder='Name' name='name' />
+                        <label htmlFor="country">Country:</label>
+                        <select name="country2" id="country2">
+                            {
+                                listCountry.map((item, index) => {
+                                    return (
+
+                                        <option key={index} value={item._id}>{item.name}</option>
+                                    )
+
+                                })
+                            }
+
+                        </select>
+
                     </div>
                     <div className="descriptionFormBook">
-                        <label htmlFor="Name">Description:</label>
+                        <label htmlFor="descriptionFormBook">Description:</label>
 
-                        <input type="text" name="descript" />
+                        <input id='descriptionFormBook2' type="text" name="descriptionFormBook" />
                     </div>
 
-                    <label>Change cover image
+                    <label>Add cover image
                         <br />
                         <ContentPreview />
                     </label>
-                    <label>Update content file
-                        <input type="file" name="img" onChange={changeHandler} />
-                    </label>
+
 
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitBook}>UPDATE</span>
+                    <span id='submitBook' onClick={submitUpdateBook}>SUBMIT</span>
                 </div>
             </div>
         </>
     )
 }
+const submitUpdateBook = async () => {
+    let name = $('#nameBook').val();
+    let author = $('#author').val();
 
-const submitBook = () => {
-    let data = $('#nameBook').val();
-    alert(data)
+    let category = $('#category').val();
+    var ek = [];
+    $('.react-select__multi-value__label').each(function () {
+        let labels = ($(this).html());
+        console.log(labels);
+        const result = getByValue(CategoryListFromSV, labels)
+
+        ek.push(result.value)
+    });
+
+    let country = $('#country').val();
+
+    let descript = $('#descriptionFormBook').val();
+    let content = $('#contentPDF').prop('files')[0];
+    const formData = new FormData();
+
+    formData.append("file", content);
+    formData.append("name", name);
+    formData.append("description", descript);
+    formData.append("author", author);
+    ek.forEach(element => {
+        formData.append("category[]", element);
+    });
+    formData.append("country", country);
+
+    await fetch(
+        'https://ebook4u-server.onrender.com/api/book',
+        {
+            method: 'POST',
+            body: formData,
+            headers: {
+
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzE4NTU0MjcsImV4cCI6MTcwMzM5MTQyN30.hpWdcirkiXTiR5WqzjEuoihCbx5mOBjMkr5qVjgj-yY'
+            },
+
+        }
+    )
+        // .then((response) => console.log(response))
+        .then((result) => {
+            // window.location.href("http://localhost:3000/admin/book/all")
+            window.location.reload(false)
+            // console.log('Success:', result);
+        })
+        .catch((error) => {
+
+        });
+
+}
+
+function getByValue(arr, value) {
+
+    for (var i = 0, iLen = arr.length; i < iLen; i++) {
+
+        if (arr[i].label == value) return arr[i];
+    }
+}
+const submitBook = async () => {
+    let name = $('#nameBook').val();
+    let author = $('#author').val();
+
+    let category = $('#category').val();
+    var ek = [];
+    $('.react-select__multi-value__label').each(function () {
+        let labels = ($(this).html());
+        console.log(labels);
+        const result = getByValue(CategoryListFromSV, labels)
+
+        ek.push(result.value)
+    });
+
+    let country = $('#country').val();
+
+    let descript = $('#descriptionFormBook').val();
+    let content = $('#contentPDF').prop('files')[0];
+
+    const formData = new FormData();
+
+    formData.append("file", content);
+    formData.append("name", name);
+    formData.append("description", descript);
+    formData.append("author", author);
+    ek.forEach(element => {
+
+        formData.append("category[]", element);
+    });
+    formData.append("country", country);
+
+    await fetch(
+        'https://ebook4u-server.onrender.com/api/book',
+        {
+            method: 'POST',
+            body: formData,
+            headers: {
+                // 'content-type': `multipart/form-data`,
+                // 'boundary': "asdsd",
+                // 'accept': 'application/json',
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzE4NTU0MjcsImV4cCI6MTcwMzM5MTQyN30.hpWdcirkiXTiR5WqzjEuoihCbx5mOBjMkr5qVjgj-yY'
+
+            },
+
+        }
+    )
+        // .then((response) => console.log(response))
+        .then((result) => {
+            // window.location.href("http://localhost:3000/admin/book/all")
+            window.location.reload(false)
+            // console.log('Success:', result);
+        })
+        .catch((error) => {
+
+        });
+
 }
 
 

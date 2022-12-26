@@ -66,15 +66,15 @@ class UserService {
 
 
 
-    getLibrary(){
+    getLibrary() {
+
         return axios.get(API + 'user/me/history', { headers: authHeader() })
     }
 
-    getAllBook(){
+    getAllBook() {
         return axios.get(API + 'api/book/all', { headers: authHeader() })
 
     }
-    
 
 }
 

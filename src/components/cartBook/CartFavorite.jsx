@@ -61,9 +61,6 @@ class Main extends React.Component {
 
     }
 
-    componentDidMount() {
-        this.fetchData()
-    }
 
 
     render() {

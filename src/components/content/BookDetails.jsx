@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Comment from '../comment/Comment'
 import { useNavigate } from "react-router-dom";
 import Style from "../../components/userPage/style1.module.css";
 import moment from "moment";
@@ -83,6 +84,7 @@ function BookDetails() {
         </div>
       </div>
     </section>
+    <Comment/>
     </div>
     
   );

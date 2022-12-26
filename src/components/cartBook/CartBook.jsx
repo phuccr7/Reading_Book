@@ -82,8 +82,7 @@ class Button extends React.Component {
     render() {
         return (
             <button className="button button-primary">
-                <Link to={`book/${this.props.link}`}>                <i className="fa fa-chevron-right"></i> Find out more
-    </Link>
+                
             </button>
         )
     }
@@ -115,7 +114,6 @@ class CardBookBody extends React.Component {
     render() {
         return (
             <div className="CardBook-body">
-                <p className="date">March 20 2015</p>
 
                 <h5>{this.props.title}</h5>
 
@@ -142,17 +140,20 @@ function CardBook(props) {
     // const [state, update] = useContext(Context)
     // console.log(state);
     const change = () => {
-        update(updateBook(id))
+        // update(updateBook(id))
+        
         // alert(state.id)
     }
     return (
         <div>
             <>
-
-                <article className="CardBook" onClick={change}  >
+            <Link to={`book/${id}`}>              
+    
+                <div className="CardBook"  style={{cursor:"pointer"}} >
                     <CardBookHeader category={props.details.category} image={props.details.image} />
                     <CardBookBody title={props.details.title} text={props.details.description} link={props.details._id}/>
-                </article >
+                </div >
+                </Link>
             </>
         </div>
     )

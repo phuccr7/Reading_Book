@@ -64,7 +64,10 @@ class UserService {
         return axios.get(API + 'user/me/favorite-book', { headers: authHeader() })
     }
 
+
+
     getLibrary() {
+
         return axios.get(API + 'user/me/history', { headers: authHeader() })
     }
 
@@ -72,6 +75,7 @@ class UserService {
         return axios.get(API + 'api/book/all', { headers: authHeader() })
 
     }
+
 }
 
 export default new UserService();

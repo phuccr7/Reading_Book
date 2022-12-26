@@ -46,10 +46,10 @@
 
 .body-content {
     /* padding-bottom: 40px; */
-    font-size: 13px;
+    margin-top: 10px;
     display: -webkit-box;
     max-width: 200px;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     padding: 0 10px;

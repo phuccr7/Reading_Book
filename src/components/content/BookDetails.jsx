@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import $ from "jquery"
+
 import Comment from '../comment/Comment'
 import { useNavigate } from "react-router-dom";
 import Style from "../../components/userPage/style1.module.css";
 import moment from "moment";
 import Header from '../../components/header/HeaderDetailBook'
+
+
 function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
@@ -16,6 +20,8 @@ function BookDetails() {
 
   const fetchData = async () => {
     try {
+      const user = localStorage.getItem('user');
+
       const { data } = await axios(
         `https://ebook4u-server.onrender.com/api/book/${id}`,
         {
@@ -23,7 +29,7 @@ function BookDetails() {
             "content-type": "application/json",
             accept: "application/json",
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs",
+              `Bearer ${user}`,
           },
         }
       );
@@ -33,7 +39,6 @@ function BookDetails() {
       console.log(error.response);
     }
   };
-
   //   if(loading) return <Loading />;
 
   return (
@@ -66,7 +71,7 @@ function BookDetails() {
               </span>
             </div>
             <div className={Style.bookDetailsItem}>
-              <span>Nội dung: {book?.description}</span>
+              <span>Nội dung: <p dangerouslySetInnerHTML={{__html: `${book?.description}`}}/></span>
             </div>
             <div className={Style.bookDetailsItem}>
               <span>Nước sản xuất: {book?.country?.name}</span>

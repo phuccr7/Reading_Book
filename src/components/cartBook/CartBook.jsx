@@ -115,9 +115,9 @@ class CardBookBody extends React.Component {
         return (
             <div className="CardBook-body">
 
-                <h5>{this.props.title}</h5>
+                <h5 className="body-content" style={{textAlign:"center"}}>{this.props.title}</h5>
 
-                <p className="body-content">{this.props.text}</p>
+                {/* <p className="body-content">{this.props.text}</p> */}
 
                 <Button link={this.props.link}/>
                 
@@ -147,11 +147,11 @@ function CardBook(props) {
     return (
         <div>
             <>
-            <Link to={`book/${id}`}>              
+            <Link to={`/book/${id}`}>              
     
                 <div className="CardBook"  style={{cursor:"pointer"}} >
                     <CardBookHeader category={props.details.category} image={props.details.image} />
-                    <CardBookBody title={props.details.title} text={props.details.description} link={props.details._id}/>
+                    <CardBookBody title={props.details.name} text={props.details.description} link={props.details._id}/>
                 </div >
                 </Link>
             </>

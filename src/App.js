@@ -13,6 +13,7 @@ import { StoreContext } from "./utils/Store";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -21,14 +22,12 @@ function App() {
 
     <>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/home' element={<Home />} />
-
+        <Route path='/*' element={<Home />} />
         <Route path='/user/*' element={<User />} />
-        {/* <Route path='/ad' element={<SidebarAdmin />} /> */}
+        <Route path='/home' element={<Home />} />
         <Route path='/admin/*' element={<Admin />} />
         <Route path='/read' element={<ReadBook />} />
-        <Route path='/book' element={<div><Header /> <BookDetail /><Comment /></div>} />
+        <Route path="/login/*" element={<Login />} />{" "}
 
       </Routes>
     </>

@@ -11,6 +11,7 @@ export default function authHeader() {
             'content-type': 'application/json',
             'accept': 'application/json',
             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzIwNDg3NjYsImV4cCI6MTcwMzU4NDc2Nn0.zp8eZuzEUVOXqjI_SPdDOURGgAEVrzWHaT8uCrwXPeE'
+
         }
     } else {
         return {}

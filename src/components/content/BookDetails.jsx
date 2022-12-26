@@ -1,71 +1,91 @@
-import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
-
-import { useNavigate } from 'react-router-dom';
-import Style from "../../components/userPage/style1.module.css"
-
-const URL = "https://openlibrary.org/works/";
-
-const BookDetails = () => {
-  const {id} = useParams();
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Style from "../../components/userPage/style1.module.css";
+import moment from "moment";
+import Header from '../../components/header/HeaderDetailBook'
+function BookDetails() {
+  const { id } = useParams();
   const [book, setBook] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    
-    async function getBookDetails(){
-      try{
-        // const response = await fetch(`${URL}${id}.json`);
-        // const data = await response.json();
-        // console.log(data);
+    fetchData();
+  }, []);
 
-        // if(data){
-          const {description, title, covers, author} = {description: "description description description description description description description description description description description description description description description description description description description description description description description description", title: "Teamfight tactics", covers: "https://images.unsplash.com/photo-1621827979802-6d778e161b28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80", author: "Thanh"};
-          const newBook = {
-            description: description,
-            title: title,
-            author: author,
-            cover_img: covers 
-          };
-          setBook(newBook);
-        // } else {
-        //   setBook(null);
-        // }
-        // setLoading(false);
-      } catch(error){
-        console.log(error);
-        // setLoading(false);
-      }
+  const fetchData = async () => {
+    try {
+      const { data } = await axios(
+        `https://ebook4u-server.onrender.com/api/book/${id}`,
+        {
+          headers: {
+            "content-type": "application/json",
+            accept: "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs",
+          },
+        }
+      );
+      console.log(data);
+      setBook(data.data.book);
+    } catch (error) {
+      console.log(error.response);
     }
-    getBookDetails();
-  }, [id]);
+  };
 
-//   if(loading) return <Loading />;
+  //   if(loading) return <Loading />;
 
   return (
-    <section className={Style.bookDetails}>
-      <div className='container'>
-        
+    <div>
+      <Header />
+      <section className={Style.bookDetails}>
+      <div className="container">
         <div className={Style.bookDetailsContent}>
           <div className={Style.bookDetailsImg}>
-            <img src = {book?.cover_img} alt = "cover img" />
+            <img src={book?.image} alt="cover img" />
           </div>
           <div className={Style.bookDetailsInfo}>
             <div className={Style.bookDetailsItem}>
-              <span className='fw-6 fs-24' style={{fontWeight:"bold",fontSize:"30px"}}>{book?.title}</span>
+              <span
+                className="fw-6 fs-24"
+                style={{ fontWeight: "bold", fontSize: "30px" }}
+              >
+                {book?.name}
+              </span>
             </div>
             <div className={Style.bookDetailsItem}>
-              <span className='fw-6 fs-24' >Tác giả: {book?.author}</span>
+              <span className="fw-6 fs-24">Tác giả: {book?.author}</span>
+            </div>
+            <div className={Style.bookDetailsItem}>
+              <span className="fw-6 fs-24">
+                Thể loại:{" "}
+                {book?.category?.map((item, index) => {
+                  return <span key={index + 1}>{item.name},</span>;
+                })}
+              </span>
             </div>
             <div className={Style.bookDetailsItem}>
               <span>Nội dung: {book?.description}</span>
             </div>
-            
+            <div className={Style.bookDetailsItem}>
+              <span>Nước sản xuất: {book?.country?.name}</span>
+            </div>
+            <div className={Style.bookDetailsItem}>
+              <span>
+                Lần cuối cập nhật:{" "}
+                {moment.utc(book?.updateAt).format("DD/MM/YYYY")}
+              </span>
+            </div>
+            <div className={Style.bookDetailsItem}>
+              <span>Lượt xem: {book?.view}</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  )
+    </div>
+    
+  );
 }
 
-export default BookDetails
+export default BookDetails;

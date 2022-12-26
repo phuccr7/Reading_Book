@@ -119,7 +119,6 @@ class CardBookBody extends React.Component {
 
                 {/* <p className="body-content">{this.props.text}</p> */}
 
-                <Button link={this.props.link}/>
                 
                 
 

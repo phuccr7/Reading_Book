@@ -38,7 +38,7 @@ function Content(props) {
 
                             <Main />
                         </div>
-
+                        
 
 
                     </div>

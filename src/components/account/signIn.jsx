@@ -46,17 +46,31 @@ function SignIn() {
                 'Accept': 'application/json',
             },
             body: JSON.stringify(item),
+        }).then(async (res) => {
+            const data = await res.json()
+            if (data.success) {
+                localStorage.setItem("user", data.accessToken)
+                navigate("/home");
+            }
+
+            // console.log(data);
+
+        }).catch((e) => {
+
         })
-            .then((Response) => Response.json())
-            .then((result) => {
-                console.log(result);
-                if (result.success) {
-                    console.log("Login Successful");
-                    navigate("/home");
-                }
-                else
-                    console.log(result.message);
-            })
+
+
+
+        // .then((Response) => Response.json())
+        // .then((result) => {
+        //     console.log(result);
+        //     if (result.success) {
+        //         console.log("Login Successful");
+        //         navigate("/home");
+        //     }
+        //     else
+        //         console.log(result.message);
+        // })
     }
 
     // result = await result.json();
@@ -189,7 +203,7 @@ function SignIn() {
                             style={{ marginTop: "20px" }}
                             onClick={login}
                         >
-                            SUBMIT
+                            SIGN
                         </button>
                         <div
                             style={{

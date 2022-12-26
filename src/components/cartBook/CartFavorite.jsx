@@ -2,7 +2,8 @@ import React from 'react'
 import "./style.css"
 import Close from '../../assets/imgs/close.png'
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
+import UserService from '../../service/UserService';
 // function CartBook() {
 //     return (
 //         <div>CartBook</div>
@@ -41,21 +42,24 @@ class Main extends React.Component {
     }
 
     fetchData = async () => {
-        try {
-            const { data } = await axios(url, {
-                headers: {
-                    'content-type': 'application/json',
-                    'accept': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzgyMTZjZmJjMmI3YTNhZjE2YWVkNzkiLCJpYXQiOjE2NzE3NzE1MDMsImV4cCI6MTY3MTg1NzkwM30.tlEjAYVSsKLnYwQY_99QbISoL4DpgfvUB7t40-XL8Fs'
-                }
+
+
+        UserService.getFavBook().
+          then(response => {
+              console.log(response.data.data);
+              this.setState({
+                posts: response.data.data
             });
 
-            console.log(data);
-            this.setState({
-                posts: data.data
-            });
-        } catch (error) {
-            console.log(error.response);
+          }).catch(err => {
+              console.log(err);
+          })
+        
+    }
+        
+        componentDidMount(){
+            this.fetchData()
+
         }
     }
     componentDidMount() {
@@ -86,7 +90,8 @@ class Button extends React.Component {
     render() {
         return (
             <button className="button button-primary">
-                <i className="fa fa-chevron-right"></i> Find out more
+<Link to={`book/${this.props.link}`}>                <i className="fa fa-chevron-right"></i> Find out more
+    </Link>                
             </button>
         )
     }
@@ -124,7 +129,7 @@ class CardBookBody extends React.Component {
 
                 <p className="body-content">{this.props.text}</p>
 
-                <Button />
+                <Button link={this.props.link}/>
                 <br />
                 <div style={{ display: "block", marginLeft: "auto", marginRight: "auto", width: "20%", marginBottom: 10 }}>
                     <img src={Close} alt="" height={40} width={40} onClick={deleteFavorite} style={{ cursor: "pointer" }} />
@@ -143,7 +148,7 @@ const MyContext = React.createContext();
 // data-aos={"flip-left"}
 function CardBook(props) {
     const [state, update] = useStore()
-    const id = props.details.id
+    const id = props.details._id
     // const { id, setID } = state
     // const [state, update] = useContext(Context)
     // console.log(state);
@@ -157,7 +162,7 @@ function CardBook(props) {
 
                 <article className="CardBook" onClick={change}  >
                     <CardBookHeader category={props.details.category} image={props.details.image} />
-                    <CardBookBody title={props.details.title} text={props.details.description} />
+                    <CardBookBody title={props.details.title} text={props.details.description} link={id}/>
                 </article >
             </>
         </div>

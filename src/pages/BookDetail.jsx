@@ -21,4 +21,4 @@ function BookDetails() {
   
   // bodyHome
   // }
-  export default BookDetail
+  export default BookDetails

@@ -9,10 +9,15 @@ import Comment from "./components/comment/Comment"
 import ReadBook from './components/readBook/readbook';
 import "./style/GlobalStyle.js"
 import { StoreContext } from "./utils/Store";
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 function App() {
   return (
 
-    
+
 
     <>
       <Routes>

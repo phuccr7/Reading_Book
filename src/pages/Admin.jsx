@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes, useRoutes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useRoutes } from 'react-router-dom'
 import SidebarAdmin from '../components/sidebar/SidebarAdmin'
 import { ReactDOM } from 'react'
 import Dashboard from '../components/admin/Dashboard'
@@ -15,6 +15,7 @@ function Admin() {
         <Routes>
 
             <Route path='/' element={<HomeAdmin />}>
+                <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path='account/*' element={<ManagerAccount />} />
                 <Route path='book/*' element={<ManagerBook />} />

@@ -60,7 +60,7 @@ function Signup() {
                         <img className="book" src={book} alt="" />
                         {/* <i className="fa-solid fa-bell"></i> */}
                         <a className="navbar-brand" href="/home">
-                            EBoo4U
+                            EBooK4U
                         </a>
                         <button
                             className="navbar-toggler"
@@ -170,16 +170,17 @@ function Signup() {
                                 />
                             </div>
                             <div className="col_half">
+                                <label for="birthday">Birthday:</label>
                                 <input
-                                    type="text"
-                                    name="name"
+                                    type="date"
                                     style={{
-                                        width: "200px",
+                                        width: "130px",
                                         borderRadius: "5%",
                                         height: "40px",
                                     }}
-                                    placeholder="Phone"
-                                    required
+                                    name="name"
+                                    placeholder="Day of birth"
+                                    onChange={(e) => setBirthday(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -213,36 +214,8 @@ function Signup() {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col_half">
-                                <label for="birthday">Birthday:</label>
-                                <input
-                                    type="date"
-                                    style={{
-                                        width: "130px",
-                                        borderRadius: "5%",
-                                        height: "40px",
-                                    }}
-                                    name="name"
-                                    placeholder="Day of birth"
-                                    onChange={(e) => setBirthday(e.target.value)}
-                                />
-                            </div>
-                            <div className="col_half">
-                                <select
-                                    name="department"
-                                    style={{
-                                        width: "200px",
-                                        borderRadius: "5%",
-                                        height: "40px",
-                                    }}
-                                >
-                                    <option value="">Role</option>
-                                    <option>Reader</option>
-                                    <option>Translator</option>
-                                    <option>Admin</option>
-                                    <option>Author</option>
-                                </select>
-                            </div>
+
+
                         </div>
 
                         <button
@@ -251,7 +224,7 @@ function Signup() {
                             style={{ marginTop: "30px" }}
                             onClick={register}
                         >
-                            SUBMIT
+                            SIGN
                         </button>
                         <div
                             style={{

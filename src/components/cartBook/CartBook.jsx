@@ -4,6 +4,8 @@ import Close from '../../assets/imgs/close.png'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import UserService from '../../service/UserService';
+import bookService from '../../service/bookService';
+import Pagination from './pagination';
 // function CartBook() {
 //     return (
 //         <div>CartBook</div>
@@ -44,7 +46,18 @@ class Main extends React.Component {
     fetchData = async () => {
         UserService.getAllBook().
           then(response => {
-              console.log(response.data.data);
+            //   console.log((response.data.data.length/8+1).toFixed());
+              localStorage.setItem("totalPage", (response.data.data.length/8+1).toFixed());
+              localStorage.setItem("totalBook", (response.data.data.length));
+              localStorage.setItem("bookPerPage", 8);
+
+          }).catch(err => {
+              console.log(err);
+          })
+        
+          bookService.getPage().
+          then(response => {
+            //   console.log((response.data.data.length/8+1).toFixed());
               this.setState({
                 posts: response.data.data
             });
@@ -52,6 +65,7 @@ class Main extends React.Component {
           }).catch(err => {
               console.log(err);
           })
+        
         
     }
         componentDidMount(){
@@ -69,8 +83,12 @@ class Main extends React.Component {
                         .keys(this.state.posts)
                         // .map(key => <div>asd</div>)
                         .map(key => <CardBook key={key} index={key} details={this.state.posts[key]} />)
+                        
                 }
+                                        
+
             </div>
+            <Pagination/>
         </div>
     }
 }

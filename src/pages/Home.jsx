@@ -24,6 +24,7 @@ function Home() {
 
         <Route path="/" element={<AllBook />} />
         <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/book/page/:id" element={<AllBook />} />
 
         {/* </Route> */}
       </Routes>

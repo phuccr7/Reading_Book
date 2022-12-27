@@ -4,7 +4,7 @@ import { Main, StoreContext } from '../cartBook/CartBook'
 import { updateBook } from '../store/action'
 import Context from '../store/Context'
 import { useStore } from '../store/hook'
-
+import Pagination from '../cartBook/pagination'
 
 
 function Content(props) {
@@ -38,7 +38,6 @@ function Content(props) {
 
                             <Main />
                         </div>
-                        
 
 
                     </div>

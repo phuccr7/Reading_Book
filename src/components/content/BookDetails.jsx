@@ -51,6 +51,7 @@ function BookDetails() {
             <img src={book?.image} alt="cover img" />
           </div>
           <div className={Style.bookDetailsInfo}>
+            <div style={{display:"flex",justifyContent:"space-between"}}>
             <div className={Style.bookDetailsItem}>
               <span
                 className="fw-6 fs-24"
@@ -59,6 +60,15 @@ function BookDetails() {
                 {book?.name}
               </span>
             </div>
+            <button type="button" class="btn btn-danger" onClick={() => {
+                            localStorage.setItem("idToAddFav", book?._id);
+
+              addToFavorite();
+              }}>Add to favorite</button>
+
+            </div>
+            
+    
             <div className={Style.bookDetailsItem}>
               <span className="fw-6 fs-24">Tác giả: {book?.author}</span>
             </div>
@@ -85,14 +95,49 @@ function BookDetails() {
             <div className={Style.bookDetailsItem}>
               <span>Lượt xem: {book?.view}</span>
             </div>
+
           </div>
+
         </div>
+
       </div>
     </section>
     <Comment/>
     </div>
     
   );
+}
+
+const addToFavorite = async () => {
+  const id = localStorage.getItem('idToAddFav');
+  let idBook = {idBook:id} ;
+  // console.log(idBook);
+  const user = localStorage.getItem('user');
+
+  await fetch(
+      'https://ebook4u-server.onrender.com/user/me/favorite-book',
+      {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json',
+
+            'Authorization': `Bearer ${user}`,
+          },
+          body: JSON.stringify(idBook),
+         
+
+      }
+  )
+      // .then((response) => console.log(response))
+      .then((result) => {
+          // window.location.href("http://localhost:3000/admin/book/all")
+          // console.log('Success:', result);
+      })
+      .catch((error) => {
+
+      });
+
 }
 
 export default BookDetails;

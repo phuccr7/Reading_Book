@@ -1,4 +1,5 @@
 import axios from "axios"
+import AuthAdmin from "./auth"
 import authHeader from "./authHeader"
 
 
@@ -6,7 +7,8 @@ const API = 'https://ebook4u-server.onrender.com/'
 
 class UserService {
 
-    getAllAccount() {
+    async getAllAccount() {
+        // await AuthAdmin()
         return axios.get(API + 'api/user/all', { headers: authHeader() })
 
     }

@@ -1,4 +1,5 @@
 import axios from "axios"
+import AuthAdmin from "./auth"
 import authHeader from "./authHeader"
 
 
@@ -14,6 +15,8 @@ class BookService {
 
     }
     updateBook(id) {
+        // AuthAdmin()
+
         return axios.put(API + `api/book/${id}`, { headers: authHeader() })
 
     }

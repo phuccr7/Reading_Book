@@ -49,8 +49,10 @@ function SignIn() {
         }).then(async (res) => {
             const data = await res.json()
             if (data.success) {
+                // console.log(data);
                 localStorage.setItem("user", data.accessToken)
-                navigate("/home");
+                if (data?.admin) navigate("/admin");
+                else navigate("/home");
             }
 
             // console.log(data);

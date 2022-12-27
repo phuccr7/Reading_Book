@@ -60,9 +60,10 @@
 }
 
 .react-select__value-container {
-
+    display: flex;
     height: 50px;
-    overflow: scroll;
+    /* scroll; */
+    overflow-y: scroll;
 
 }
 

@@ -31,6 +31,8 @@ import makeAnimated from 'react-select/animated';
 import { Category } from '@mui/icons-material';
 import { useStore } from '../store/hook';
 import { updateBook } from '../store/action';
+import { jwt } from '../../service/authHeader';
+import AuthAdmin from '../../service/auth';
 
 
 
@@ -95,6 +97,7 @@ const dataComment = [
         // Action:""
     },
 ]
+
 function ManagerBook() {
     return (
         <>
@@ -246,7 +249,10 @@ function Content(props) {
 
     useEffect(() => {
 
-
+        // const authen = async () => await AuthAdmin()
+        // authen()
+        // AuthAdmin()
+        // console.log(a);
         bookService.getAllBook().
             then(response => {
                 // console.log(response.data.data);
@@ -343,6 +349,7 @@ function ContentComment(props) {
     const [listAccount, setList] = useState([]);
 
     useEffect(() => {
+
 
         setList(props.data)
         // console.log(listAccount);
@@ -455,6 +462,7 @@ function ContentBan(props) {
 
     // ]
     useEffect(() => {
+
 
 
         const load = async () => {
@@ -588,6 +596,8 @@ function ContentUpdate(props) {
     const id = localStorage.getItem("bookUpdate");
     // const id = state.id
     useEffect(() => {
+
+
         initData(id)
         // console.log(state);
 
@@ -727,7 +737,7 @@ const submitUpdateBook = async () => {
         formData.append("category[]", element);
     });
     formData.append("country", country);
-
+    let jwts = jwt()
     await fetch(
         'https://ebook4u-server.onrender.com/api/book',
         {
@@ -735,7 +745,7 @@ const submitUpdateBook = async () => {
             body: formData,
             headers: {
 
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzE4NTU0MjcsImV4cCI6MTcwMzM5MTQyN30.hpWdcirkiXTiR5WqzjEuoihCbx5mOBjMkr5qVjgj-yY'
+                'Authorization': jwts,
             },
 
         }
@@ -789,7 +799,7 @@ const submitBook = async () => {
         formData.append("category[]", element);
     });
     formData.append("country", country);
-
+    let jwts = jwt()
     await fetch(
         'https://ebook4u-server.onrender.com/api/book',
         {
@@ -799,7 +809,7 @@ const submitBook = async () => {
                 // 'content-type': `multipart/form-data`,
                 // 'boundary': "asdsd",
                 // 'accept': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzE4NTU0MjcsImV4cCI6MTcwMzM5MTQyN30.hpWdcirkiXTiR5WqzjEuoihCbx5mOBjMkr5qVjgj-yY'
+                'Authorization': jwts,
 
             },
 

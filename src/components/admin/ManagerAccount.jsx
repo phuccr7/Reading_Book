@@ -25,6 +25,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import axios from 'axios';
 import authHeader from '../../service/authHeader';
+import AuthAdmin from '../../service/auth';
 // import HeaderAdmin from '../../components/header/HeaderAdmin'
 const data = [
     {
@@ -75,6 +76,8 @@ function ManagerAccount() {
 
 
 function AllAccount() {
+    // const load = async () => await AuthAdmin()
+    // load()
     return (
         <div>
 
@@ -98,6 +101,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 function BanAccount() {
+    // const load = async () => await AuthAdmin()
+    // load()
     return (
         <div>
 

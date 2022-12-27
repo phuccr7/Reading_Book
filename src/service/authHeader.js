@@ -19,7 +19,20 @@ export default function authHeader() {
 
 }
 
-const auth = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzE4NTU0MjcsImV4cCI6MTcwMzM5MTQyN30.hpWdcirkiXTiR5WqzjEuoihCbx5mOBjMkr5qVjgj-yY'
+export const jwt = () => {
+
+    let token = localStorage.getItem('user');
+    if (!token) return "{}"
+    else return 'Bearer ' + token;
+}
+export const logout = () => {
+
+    localStorage.removeItem("user");
+
+    // let token = localStorage.getItem('user');
+    // if (!token) return {}
+    // else return 'Bearer ' + token;
+}
 
 
 

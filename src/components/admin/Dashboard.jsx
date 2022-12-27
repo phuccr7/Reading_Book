@@ -2,43 +2,44 @@ import React, { useState, useEffect } from "react";
 import "./dashboard.css";
 import BarChart from "../content/BarChart";
 import { UserData } from "../content/Data";
+import AuthAdmin from "../../service/auth";
 
 const dataTop = [
-    {
-        Name: "The Hike",
-        View: "50k",
-    },
-    {
-        Name: "The Sailor's Tale",
-        View: "40k",
+  {
+    Name: "The Hike",
+    View: "50k",
+  },
+  {
+    Name: "The Sailor's Tale",
+    View: "40k",
 
-    },
-    {
-        Name: "A Runaway Tale",
-        View: "30k"
+  },
+  {
+    Name: "A Runaway Tale",
+    View: "30k"
 
-    },
+  },
 ]
 
 const dataSummary = [
-    {
-        Name: "New users",
-        count: "1456",
-    },
-    {
-        Name: "Total users",
-        count: "20000",
+  {
+    Name: "New users",
+    count: "1456",
+  },
+  {
+    Name: "Total users",
+    count: "20000",
 
-    },
-    {
-        Name: "New books",
-        count: "2000"
+  },
+  {
+    Name: "New books",
+    count: "2000"
 
-    },
-    {
-        Name: "Total books",
-        count: "12000"
-    }
+  },
+  {
+    Name: "Total books",
+    count: "12000"
+  }
 ]
 
 
@@ -47,6 +48,9 @@ function Dashboard() {
   const [mode, setMode] = useState(1);
 
   useEffect(() => {
+    const load = async () => AuthAdmin()
+
+    load()
     const data = getData();
     setUserData(data);
   }, []);
@@ -106,87 +110,90 @@ function Dashboard() {
 
   function Content(props) {
     const [listAccount, setList] = useState([]);
-    
-    useEffect(() => {
 
-        setList(props.data)
-        console.log(listAccount);
+    useEffect(() => {
+      const load = async () => await AuthAdmin()
+      load()
+
+      setList(props.data)
+      // console.log(listAccount);
 
     }, [props.data])
 
     return (
-        <>
-            <div>
-            <div className="cardInfo">
-                                <div className="numbers"  >
-                                  <p className="text-sm mb-0 text-capitalize font-weight-bold text-center text-danger" style={{marginLeft:"65px"}}>
-                                    Top Books
-                                  </p>
-                        {listAccount?.map((item, index) => {
-                            return (
-                                
-                                
-                                  <h5 className="font-weight-bolder mb-0" key={index}>
-                                    <span className=" text-sm font-weight-bolder .text-dark">
-                                      {item.Name} {item.View}
-                                    </span>
-                                    <br />
-                                    
-                                  </h5>
-                                
-                                )
-                        })}
-                        
-                    
+      <>
+        <div>
+          <div className="cardInfo">
+            <div className="numbers"  >
+              <p className="text-sm mb-0 text-capitalize font-weight-bold text-center text-danger" style={{ marginLeft: "65px" }}>
+                Top Books
+              </p>
+              {listAccount?.map((item, index) => {
+                return (
 
-                        </div>
-                    </div>
+
+                  <h5 className="font-weight-bolder mb-0" key={index}>
+                    <span className=" text-sm font-weight-bolder .text-dark">
+                      {item.Name} {item.View}
+                    </span>
+                    <br />
+
+                  </h5>
+
+                )
+              })}
+
+
+
             </div>
-        </>
+          </div>
+        </div>
+      </>
     )
-}
+  }
 
-function ContentSummary(props) {
+  function ContentSummary(props) {
     const [listAccount, setList] = useState([]);
-    
-    useEffect(() => {
 
-        setList(props.data)
-        console.log(listAccount);
+    useEffect(() => {
+      const load = async () => await AuthAdmin()
+      load()
+      setList(props.data)
+      console.log(listAccount);
 
     }, [props.data])
 
     return (
-        <>
-            <div>
-            <div className="cardInfo" style={{ marginTop: "5px" }}>
-                                <div className="numbers"  >
-                                  <p className="text-sm mb-0 text-capitalize font-weight-bold text-center text-danger" style={{marginLeft:"65px"}}>
-                                    Summary
-                                  </p>
-                        {listAccount?.map((item, index) => {
-                            return (
-                                
-                                
-                                  <h5 className="font-weight-bolder mb-0" key={index}>
-                                    <span className=" text-sm font-weight-bolder .text-dark">
-                                      {item.Name} {item.count}
-                                    </span>
-                                    <br />
-                                    
-                                  </h5>
-                                
-                                )
-                        })}
-                        
-                    
+      <>
+        <div>
+          <div className="cardInfo" style={{ marginTop: "5px" }}>
+            <div className="numbers"  >
+              <p className="text-sm mb-0 text-capitalize font-weight-bold text-center text-danger" style={{ marginLeft: "65px" }}>
+                Summary
+              </p>
+              {listAccount?.map((item, index) => {
+                return (
 
-                        </div>
-                    </div>
+
+                  <h5 className="font-weight-bolder mb-0" key={index}>
+                    <span className=" text-sm font-weight-bolder .text-dark">
+                      {item.Name} {item.count}
+                    </span>
+                    <br />
+
+                  </h5>
+
+                )
+              })}
+
+
+
             </div>
-        </>
+          </div>
+        </div>
+      </>
     )
-}
+  }
 
   const changeToThisWeek = () => {
     const data = getData("thisWeek");
@@ -223,9 +230,8 @@ function ContentSummary(props) {
             <div className="btnSelect">
               <button
                 type="button"
-                className={`btn ${
-                  mode === 1 ? "btn-secondary" : "btn-outline-secondary"
-                }`}
+                className={`btn ${mode === 1 ? "btn-secondary" : "btn-outline-secondary"
+                  }`}
                 disabled={mode === 1}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToThisWeek}
@@ -234,9 +240,8 @@ function ContentSummary(props) {
               </button>
               <button
                 type="button"
-                className={`btn ${
-                  mode === 2 ? "btn-secondary" : "btn-outline-secondary"
-                }`}
+                className={`btn ${mode === 2 ? "btn-secondary" : "btn-outline-secondary"
+                  }`}
                 disabled={mode === 2}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToLastWeek}
@@ -245,9 +250,8 @@ function ContentSummary(props) {
               </button>
               <button
                 type="button"
-                className={`btn ${
-                  mode === 3 ? "btn-secondary" : "btn-outline-secondary"
-                }`}
+                className={`btn ${mode === 3 ? "btn-secondary" : "btn-outline-secondary"
+                  }`}
                 disabled={mode === 3}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToLastMonth}
@@ -259,19 +263,19 @@ function ContentSummary(props) {
           </div>
         </div>
         <div className="mainContent1">
-        <div style={{ marginLeft: "30px" }}>
-            <Content data = {dataTop}/> 
-            
+          <div style={{ marginLeft: "30px" }}>
+            <Content data={dataTop} />
+
           </div>
         </div>
-        
-        <div className="mainContent1" style={{marginTop:"205px"}}>
-        <div style={{ marginLeft: "30px" }}>
-        <ContentSummary data = {dataSummary}/> 
 
-            </div>
-            
-          
+        <div className="mainContent1" style={{ marginTop: "205px" }}>
+          <div style={{ marginLeft: "30px" }}>
+            <ContentSummary data={dataSummary} />
+
+          </div>
+
+
         </div>
       </div>
       <div className="contentDashboard" style={{ marginLeft: "50px" }}></div>
